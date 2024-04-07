@@ -1,0 +1,4 @@
+#test
+requires-permission: true
+schema-version: 1.0
+disabled-worlds: []
