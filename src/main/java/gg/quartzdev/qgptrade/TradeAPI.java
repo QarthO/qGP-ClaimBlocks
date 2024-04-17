@@ -1,28 +1,27 @@
-package gg.quartzdev.qtemplateplugin;
+package gg.quartzdev.qgptrade;
 
 import gg.quartzdev.lib.qlibpaper.QPerm;
 import gg.quartzdev.lib.qlibpaper.QPluginAPI;
 import gg.quartzdev.lib.qlibpaper.commands.QCommandMap;
 import gg.quartzdev.lib.qlibpaper.lang.GenericMessages;
 import gg.quartzdev.lib.qlibpaper.QLogger;
-import gg.quartzdev.qtemplateplugin.commands.CMD;
-import gg.quartzdev.qtemplateplugin.commands.CMDreload;
-import gg.quartzdev.qtemplateplugin.commands.CMDset;
-import gg.quartzdev.qtemplateplugin.storage.Config;
+import gg.quartzdev.qgptrade.commands.CMD;
+import gg.quartzdev.qgptrade.commands.CMDreload;
+import gg.quartzdev.qgptrade.commands.CMDwithdraw;
+import gg.quartzdev.qgptrade.storage.Config;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 
-import java.util.Arrays;
 import java.util.List;
 
-public class QTemplateAPI implements QPluginAPI {
-    private static QTemplateAPI apiInstance;
-    private static QTemplatePlugin pluginInstance;
+public class TradeAPI implements QPluginAPI {
+    private static TradeAPI apiInstance;
+    private static QGPTrade pluginInstance;
     private static QCommandMap commandMap;
     private static Metrics metrics;
     private static Config config;
 
-    public static QTemplatePlugin getPlugin(){
+    public static QGPTrade getPlugin(){
         return pluginInstance;
     }
 
@@ -30,11 +29,11 @@ public class QTemplateAPI implements QPluginAPI {
         return config;
     }
 
-    private QTemplateAPI(){
+    private TradeAPI(){
 
     }
 
-    private QTemplateAPI(QTemplatePlugin plugin, int bStatsPluginId){
+    private TradeAPI(QGPTrade plugin, int bStatsPluginId){
         pluginInstance = plugin;
 
         if(bStatsPluginId > 0){
@@ -46,12 +45,12 @@ public class QTemplateAPI implements QPluginAPI {
         setupConfig();
     }
 
-    protected static void enable(QTemplatePlugin plugin, int bStatsPluginId){
+    protected static void enable(QGPTrade plugin, int bStatsPluginId){
         if(apiInstance != null){
             QLogger.error(GenericMessages.ERROR_PLUGIN_ENABLE);
             return;
         }
-        apiInstance = new QTemplateAPI(plugin, bStatsPluginId);
+        apiInstance = new TradeAPI(plugin, bStatsPluginId);
     }
 
     protected static void disable(){
@@ -96,9 +95,9 @@ public class QTemplateAPI implements QPluginAPI {
 
     public void registerCommands(){
         commandMap = new QCommandMap();
-        commandMap.create(pluginInstance.getName(), new CMD("", QPerm.GROUP_PLAYER), List.of("template", "kekw"));
+        commandMap.create(pluginInstance.getName(), new CMD("", QPerm.GROUP_PLAYER), List.of("claimblocks", "cb"));
         commandMap.addSubCommand(pluginInstance.getName(), new CMDreload("reload", QPerm.GROUP_ADMIN));
-        commandMap.addSubCommand(pluginInstance.getName(), new CMDset("set", QPerm.GROUP_ADMIN));
+        commandMap.addSubCommand(pluginInstance.getName(), new CMDwithdraw("withdraw", QPerm.GROUP_PLAYER));
     }
 
     public void registerListeners(){

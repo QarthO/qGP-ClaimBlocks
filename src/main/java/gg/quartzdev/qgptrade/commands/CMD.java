@@ -1,8 +1,8 @@
-package gg.quartzdev.qtemplateplugin.commands;
+package gg.quartzdev.qgptrade.commands;
 
 import gg.quartzdev.lib.qlibpaper.Sender;
 import gg.quartzdev.lib.qlibpaper.commands.QCommand;
-import gg.quartzdev.qtemplateplugin.QTemplateAPI;
+import gg.quartzdev.qgptrade.TradeAPI;
 import org.bukkit.command.CommandSender;
 
 public class CMD extends QCommand {
@@ -12,7 +12,7 @@ public class CMD extends QCommand {
 
     @Override
     public boolean logic(CommandSender sender, String label, String[] args) {
-        Sender.message(sender, "<green>" + QTemplateAPI.getName() + " v" + QTemplateAPI.getVersion());
+        Sender.message(sender, "<green>" + TradeAPI.getName() + " v" + TradeAPI.getVersion());
         return true;
     }
 

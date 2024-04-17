@@ -1,4 +1,9 @@
-name: qTemplatePlugin
+name: qGP-Trade
 version: '${project.version}'
-main: gg.quartzdev.qtemplateplugin.QTemplatePlugin
-api-version: 1.19
+main: gg.quartzdev.qgptrade.QGPTrade
+api-version: "1.19"
+dependencies:
+  server:
+    GriefPrevention:
+      load: BEFORE
+      required: true

@@ -1,4 +1,18 @@
-#test
-requires-permission: true
+############################################################
+# +------------------------------------------------------+ #
+# |                   qGP-Trade Config                   | #
+# |   Source:   https://github.com/QarthO/qGP-Trade      | #
+# |   Download: https://modrinth.com/plugin/qGP-Trade/   | #
+# |   Donate:   https://quartzdev.gg/donate              | #
+# |   Discord:  https://quartzdev.gg/discord             | #
+# +------------------------------------------------------+ #
+############################################################
+# Default Config
 schema-version: 1.0
-disabled-worlds: []
+
+# Requires 'qgptrade.admin.updates' permission to be notified (or OP)
+# Only checks when the server boots or someone with the perm logs in
+check-updates: true
+
+# Should the permission 'qgptrade.trade' be required to use the command
+requires-permission: true

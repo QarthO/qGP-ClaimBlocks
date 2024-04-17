@@ -1,10 +1,10 @@
-package gg.quartzdev.qtemplateplugin.commands;
+package gg.quartzdev.qgptrade.commands;
 
 import gg.quartzdev.lib.qlibpaper.Sender;
 import gg.quartzdev.lib.qlibpaper.commands.QCommand;
 import gg.quartzdev.lib.qlibpaper.lang.GenericMessages;
 import gg.quartzdev.lib.qlibpaper.lang.QPlaceholder;
-import gg.quartzdev.qtemplateplugin.QTemplateAPI;
+import gg.quartzdev.qgptrade.TradeAPI;
 import org.bukkit.command.CommandSender;
 
 public class CMDreload extends QCommand {
@@ -14,7 +14,7 @@ public class CMDreload extends QCommand {
 
     @Override
     public boolean logic(CommandSender sender, String label, String[] args) {
-        QTemplateAPI.getConfig().reload();
+        TradeAPI.getConfig().reload();
         Sender.message(sender, GenericMessages.RELOAD_COMPLETE.parse(QPlaceholder.FILE,  "config.yml"));
         return false;
     }
