@@ -42,7 +42,7 @@ public class TradeAPI implements QPluginAPI {
 
     private TradeAPI(QGPTrade plugin, int bStatsPluginId){
         pluginInstance = plugin;
-        Messages.init("<white>[<red>qGP<white>-<aqua>Trade<white>]", "<red>qGP-<aqua>Trade <bold><gray>></bold>]");
+        Messages.init("<white>[<red>qGP<white>-<aqua>Trade<white>]", "<red>qGP-<aqua>Trade <bold><gray>>></bold>");
         QLogger.init(pluginInstance.getComponentLogger());
         if(bStatsPluginId > 0){
             setupMetrics(bStatsPluginId);
