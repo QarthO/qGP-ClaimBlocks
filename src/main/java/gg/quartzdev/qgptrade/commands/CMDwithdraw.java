@@ -2,6 +2,7 @@ package gg.quartzdev.qgptrade.commands;
 
 import gg.quartzdev.lib.qlibpaper.Sender;
 import gg.quartzdev.lib.qlibpaper.commands.QCommand;
+import gg.quartzdev.lib.qlibpaper.lang.QMessage;
 import gg.quartzdev.qgptrade.util.Messages;
 import me.ryanhamshire.GriefPrevention.GriefPrevention;
 import me.ryanhamshire.GriefPrevention.PlayerData;
@@ -20,7 +21,6 @@ public class CMDwithdraw extends QCommand {
 
     @Override
     public boolean logic(CommandSender sender, String label, String[] args) {
-        Sender.message(sender, label + " - " + Arrays.toString(args));
 
 //        Gets player
         if(!(sender instanceof Player player)) {
@@ -43,8 +43,27 @@ public class CMDwithdraw extends QCommand {
         }
 
         int blocksToWithdraw = Integer.parseInt(args[1]);
+        int blocksAvailable = playerData.getRemainingClaimBlocks();
+        int blocksRemaining = blocksAvailable - blocksToWithdraw;
 
-        Sender.message(sender, Messages.WITHDRAW_CLAIMBLOCKS.parse("blocks", args[1]).parse("total_blocks", "" + playerData.getRemainingClaimBlocks()));
+        if(blocksRemaining < 0){
+            Sender.message(player, "Not enough blocks!");
+            return false;
+        }
+
+        int blocksBonus = playerData.getBonusClaimBlocks();
+        int blocksAccrued = playerData.getAccruedClaimBlocks();
+
+        if(blocksBonus >= blocksToWithdraw){
+            playerData.setBonusClaimBlocks(blocksBonus - blocksToWithdraw);
+        } else {
+            playerData.setAccruedClaimBlocks(blocksAccrued - blocksToWithdraw);
+        }
+
+        QMessage successResponse = Messages.WITHDRAW_CLAIMBLOCKS
+                .parse("blocks_withdraw", String.valueOf(blocksToWithdraw))
+                .parse("blocks_remaining", String.valueOf(blocksRemaining));
+        Sender.message(player, successResponse);
         return true;
     }
 
