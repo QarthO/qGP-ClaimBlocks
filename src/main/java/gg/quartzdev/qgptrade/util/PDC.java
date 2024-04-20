@@ -1,6 +1,6 @@
 package gg.quartzdev.qgptrade.util;
 
-import com.jeff_media.morepersistentdatatypes.DataType;
+import gg.quartzdev.morepersistentdatatypes.DataType;
 import gg.quartzdev.qgptrade.TradeAPI;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Item;

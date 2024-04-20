@@ -9,6 +9,8 @@ import gg.quartzdev.qgptrade.commands.CMD;
 import gg.quartzdev.qgptrade.commands.CMDreload;
 import gg.quartzdev.qgptrade.commands.CMDwithdraw;
 import gg.quartzdev.qgptrade.storage.Config;
+import gg.quartzdev.qgptrade.util.Messages;
+import gg.quartzdev.qgptrade.util.VaultEco;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 
@@ -20,6 +22,7 @@ public class TradeAPI implements QPluginAPI {
     private static QCommandMap commandMap;
     private static Metrics metrics;
     private static Config config;
+    private static VaultEco economy;
 
     public static QGPTrade getPlugin(){
         return pluginInstance;
@@ -29,12 +32,17 @@ public class TradeAPI implements QPluginAPI {
         return config;
     }
 
+    public static VaultEco getEconomy(){
+        return economy;
+    }
+
     private TradeAPI(){
 
     }
 
     private TradeAPI(QGPTrade plugin, int bStatsPluginId){
         pluginInstance = plugin;
+        Messages.init("<gray>[<red>q<aqua>Plugin<gray>]", "<red>q<aqua>Plugin <bold><gray>></bold>]");
 
         if(bStatsPluginId > 0){
             setupMetrics(bStatsPluginId);
@@ -43,6 +51,7 @@ public class TradeAPI implements QPluginAPI {
         registerCommands();
         registerListeners();
         setupConfig();
+        setupEconomy();
     }
 
     protected static void enable(QGPTrade plugin, int bStatsPluginId){
@@ -67,6 +76,8 @@ public class TradeAPI implements QPluginAPI {
 //        Clears instances
         apiInstance = null;
         pluginInstance = null;
+        config = null;
+        economy = null;
         if(commandMap != null){
             commandMap.unregisterAll();
             commandMap = null;
@@ -106,6 +117,10 @@ public class TradeAPI implements QPluginAPI {
 
     public void setupConfig(){
         config = new Config(pluginInstance, "config.yml");
+    }
+
+    public void setupEconomy(){
+        economy = new VaultEco();
     }
 
 }

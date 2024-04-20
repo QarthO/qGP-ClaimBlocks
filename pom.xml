@@ -30,7 +30,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.5.1</version>
+                <version>3.5.2</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -82,10 +82,6 @@
             <id>sonatype</id>
             <url>https://oss.sonatype.org/content/groups/public/</url>
         </repository>
-        <repository>
-            <id>jeff-media-public</id>
-            <url>https://hub.jeff-media.com/nexus/repository/jeff-media-public/</url>
-        </repository>
     </repositories>
 
     <dependencies>
@@ -96,15 +92,9 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.bstats</groupId>
-            <artifactId>bstats-bukkit</artifactId>
-            <version>3.0.2</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>com.github.QarthO</groupId>
             <artifactId>qlib-paper</artifactId>
-            <version>a41b20816e</version>
+            <version>1da0e181c4</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -114,11 +104,10 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.jeff_media</groupId>
-            <artifactId>MorePersistentDataTypes</artifactId>
-            <version>2.4.0</version>
-            <scope>compile</scope>
+            <groupId>com.github.MilkBowl</groupId>
+            <artifactId>VaultAPI</artifactId>
+            <version>1.7</version>
+            <scope>provided</scope>
         </dependency>
-
     </dependencies>
 </project>

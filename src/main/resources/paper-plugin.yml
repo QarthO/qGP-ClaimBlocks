@@ -7,3 +7,6 @@ dependencies:
     GriefPrevention:
       load: BEFORE
       required: true
+    Vault:
+      load: BEFORE
+      required: false
