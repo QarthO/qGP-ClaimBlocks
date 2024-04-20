@@ -1,17 +1,20 @@
 package gg.quartzdev.qgptrade.commands;
 
+import com.google.common.base.Charsets;
 import gg.quartzdev.lib.qlibpaper.Sender;
 import gg.quartzdev.lib.qlibpaper.commands.QCommand;
 import gg.quartzdev.lib.qlibpaper.lang.QMessage;
 import gg.quartzdev.qgptrade.util.Messages;
 import me.ryanhamshire.GriefPrevention.GriefPrevention;
 import me.ryanhamshire.GriefPrevention.PlayerData;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 public class CMDwithdraw extends QCommand {
 
@@ -42,12 +45,16 @@ public class CMDwithdraw extends QCommand {
             return false;
         }
 
-        int blocksToWithdraw = Integer.parseInt(args[1]);
+        int blocksToWithdraw = parseWithdraw(args[1]);
+        if(blocksToWithdraw <= 0){
+            Sender.message(sender, "<prefix> come on bruh, type a number greater than 0 my guy...");
+            return false;
+        }
         int blocksAvailable = playerData.getRemainingClaimBlocks();
         int blocksRemaining = blocksAvailable - blocksToWithdraw;
 
         if(blocksRemaining < 0){
-            Sender.message(player, "Not enough blocks!");
+            Sender.message(player, "<prefix> u tryna withdraw more blocks than ya got? nice try n00b");
             return false;
         }
 
@@ -59,6 +66,7 @@ public class CMDwithdraw extends QCommand {
         } else {
             playerData.setAccruedClaimBlocks(blocksAccrued - blocksToWithdraw);
         }
+        savePlayerData(player, playerData);
 
         QMessage successResponse = Messages.WITHDRAW_CLAIMBLOCKS
                 .parse("blocks_withdraw", String.valueOf(blocksToWithdraw))
@@ -88,5 +96,12 @@ public class CMDwithdraw extends QCommand {
         } catch (NumberFormatException e){
             return 0;
         }
+    }
+
+    private void savePlayerData(Player player, PlayerData playerData){
+        UUID id = Bukkit.getOnlineMode() ?
+                player.getUniqueId() :
+                UUID.nameUUIDFromBytes(("OfflinePlayer:" + player.getName()).getBytes(Charsets.UTF_8));
+        GriefPrevention.instance.dataStore.savePlayerData(id, playerData);
     }
 }
