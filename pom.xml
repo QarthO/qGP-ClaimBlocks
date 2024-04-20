@@ -55,7 +55,7 @@
                 <version>2.3.1</version>
                 <configuration>
                     <!--                    Mac-->
-<!--                    <outputDirectory>/Users/derek/Minecraft/Server/Local Dev Server/plugins/update</outputDirectory>-->
+                    <outputDirectory>/Users/derek/Minecraft/Server/Local Dev Server/plugins/update</outputDirectory>
                     <!--                    Windows-->
 <!--                    <outputDirectory>C:\Users\derek\Documents\Minecraft\Server\Pufferfish 1.20.4\plugins\update</outputDirectory>-->
                 </configuration>
@@ -94,7 +94,7 @@
         <dependency>
             <groupId>com.github.QarthO</groupId>
             <artifactId>qlib-paper</artifactId>
-            <version>1da0e181c4</version>
+            <version>0e1f8d36f1</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
