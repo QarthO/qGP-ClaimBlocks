@@ -1,5 +1,6 @@
 package gg.quartzdev.qgptrade.util;
 
+import gg.quartzdev.lib.qlibpaper.QLogger;
 import gg.quartzdev.lib.qlibpaper.lang.GenericMessages;
 import gg.quartzdev.lib.qlibpaper.lang.QMessage;
 import gg.quartzdev.qgptrade.TradeAPI;
@@ -23,6 +24,14 @@ public class Messages extends GenericMessages {
             return;
         }
         INSTANCE = new Messages(consolePrefix, chatPrefix);
+        System.out.println("=================");
+        System.out.println("=================");
+        System.out.println("=================");
+        System.out.println(CONSOLE_PREFIX.get());
+        System.out.println(CHAT_PREFIX.get());
+        System.out.println("=================");
+        System.out.println("=================");
+        System.out.println("=================");
     }
 
 

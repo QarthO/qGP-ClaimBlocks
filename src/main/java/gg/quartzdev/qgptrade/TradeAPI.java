@@ -42,7 +42,7 @@ public class TradeAPI implements QPluginAPI {
 
     private TradeAPI(QGPTrade plugin, int bStatsPluginId){
         pluginInstance = plugin;
-        Messages.init("<gray>[<red>q<aqua>Plugin<gray>]", "<red>q<aqua>Plugin <bold><gray>></bold>]");
+        Messages.init("<white>[<red>qGP<white>-<aqua>Trade<white>]", "<red>qGP-<aqua>Trade <bold><gray>></bold>]");
         QLogger.init(pluginInstance.getComponentLogger());
         if(bStatsPluginId > 0){
             setupMetrics(bStatsPluginId);
@@ -67,7 +67,7 @@ public class TradeAPI implements QPluginAPI {
 //        Warns about reloading/plugin managers
         final boolean isStopping = Bukkit.getServer().isStopping();
         if(!isStopping){
-            QLogger.error(GenericMessages.PLUGIN_UNSAFE_DISABLE);
+            QLogger.warning(GenericMessages.PLUGIN_UNSAFE_DISABLE);
         }
 
 //        Logs plugin is being disabled

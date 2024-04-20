@@ -22,13 +22,13 @@ public class Config extends QConfiguration {
 
     @Override
     public void loadAllData() {
-        loadRequiresPermission();
+//        loadRequiresPermission();
         loadDepositSlipMaterial();
     }
 
     @Override
     public void saveAllData() {
-        saveDepositSlipMaterial();
+//        saveDepositSlipMaterial();
     }
     public void loadDepositSlipMaterial(){
         depositSlipMaterial = getMaterial(PATH_WITHDRAW__DESPOIT_SLIP__MATERIAL);

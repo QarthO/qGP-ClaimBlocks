@@ -1,7 +1,6 @@
 package gg.quartzdev.qgptrade;
 
 import gg.quartzdev.qgptrade.transaction.Transaction;
-import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.java.JavaPlugin;
 

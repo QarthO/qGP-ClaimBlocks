@@ -94,7 +94,7 @@
         <dependency>
             <groupId>com.github.QarthO</groupId>
             <artifactId>qlib-paper</artifactId>
-            <version>0e1f8d36f1</version>
+            <version>6e1341b7be</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
