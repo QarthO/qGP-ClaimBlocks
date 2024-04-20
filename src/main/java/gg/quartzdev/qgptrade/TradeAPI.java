@@ -8,7 +8,10 @@ import gg.quartzdev.lib.qlibpaper.QLogger;
 import gg.quartzdev.qgptrade.commands.CMD;
 import gg.quartzdev.qgptrade.commands.CMDreload;
 import gg.quartzdev.qgptrade.commands.CMDwithdraw;
+import gg.quartzdev.qgptrade.listeners.ExploitListener;
+import gg.quartzdev.qgptrade.listeners.SlipListener;
 import gg.quartzdev.qgptrade.storage.Config;
+import gg.quartzdev.qgptrade.transaction.TransactionManager;
 import gg.quartzdev.qgptrade.util.Messages;
 import gg.quartzdev.qgptrade.util.VaultEco;
 import org.bstats.bukkit.Metrics;
@@ -23,6 +26,7 @@ public class TradeAPI implements QPluginAPI {
     private static Metrics metrics;
     private static Config config;
     private static VaultEco economy;
+    private static TransactionManager transactionManager;
 
     public static QGPTrade getPlugin(){
         return pluginInstance;
@@ -34,6 +38,10 @@ public class TradeAPI implements QPluginAPI {
 
     public static VaultEco getEconomy(){
         return economy;
+    }
+
+    public static TransactionManager getTransactionManager(){
+        return transactionManager;
     }
 
     private TradeAPI(){
@@ -52,6 +60,7 @@ public class TradeAPI implements QPluginAPI {
         registerListeners();
         setupConfig();
         setupEconomy();
+        setupTransactionManager();
     }
 
     protected static void enable(QGPTrade plugin, int bStatsPluginId){
@@ -78,6 +87,7 @@ public class TradeAPI implements QPluginAPI {
         pluginInstance = null;
         config = null;
         economy = null;
+        transactionManager = null;
         if(commandMap != null){
             commandMap.unregisterAll();
             commandMap = null;
@@ -112,7 +122,8 @@ public class TradeAPI implements QPluginAPI {
     }
 
     public void registerListeners(){
-
+        Bukkit.getPluginManager().registerEvents(new SlipListener(), pluginInstance);
+        Bukkit.getPluginManager().registerEvents(new ExploitListener(), pluginInstance);
     }
 
     public void setupConfig(){
@@ -121,6 +132,10 @@ public class TradeAPI implements QPluginAPI {
 
     public void setupEconomy(){
         economy = new VaultEco();
+    }
+
+    public void setupTransactionManager(){
+        transactionManager = new TransactionManager();
     }
 
 }

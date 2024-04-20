@@ -1,8 +1,11 @@
 package gg.quartzdev.qgptrade.transaction;
 
 import gg.quartzdev.lib.qlibpaper.QLogger;
+import gg.quartzdev.lib.qlibpaper.Sender;
 import gg.quartzdev.qgptrade.TradeAPI;
 import gg.quartzdev.qgptrade.util.PDC;
+import net.kyori.adventure.text.Component;
+import org.bukkit.Material;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -46,11 +49,13 @@ public class Transaction implements ConfigurationSerializable {
     }
 
     private void createSlip(){
+        Sender.broadcast("creating slip");
         slip = new ItemStack(TradeAPI.getConfig().getDepositSlipMaterial());
+        slip.setType(Material.DIAMOND);
         ItemMeta itemMeta = slip.getItemMeta();
-        PDC.setTransactionId(slip, transactionId);
+        PDC.setTransactionId(itemMeta, transactionId);
+        updateLore(itemMeta);
         slip.setItemMeta(itemMeta);
-        updateLore();
     }
 
     public UUID getId(){
@@ -66,11 +71,12 @@ public class Transaction implements ConfigurationSerializable {
     }
 
     public ItemStack slip(){
-        return slip.clone();
+        return slip;
     }
 
-    public void updateLore(){
-
+    public void updateLore(ItemMeta itemMeta){
+        Sender.broadcast("updating lore");
+        itemMeta.displayName(Component.text("sup"));
     }
 
     @Override
@@ -80,5 +86,10 @@ public class Transaction implements ConfigurationSerializable {
         map.put("claim-blocks", claimBlocks);
         map.put("creation-date", creationDate.getTime());
         return map;
+    }
+
+    @Override
+    public String toString(){
+        return "Transaction: " + transactionId + ", Withdrawer: " + creatorId + ", Claimblocks: " + claimBlocks;
     }
 }

@@ -4,6 +4,8 @@ import com.google.common.base.Charsets;
 import gg.quartzdev.lib.qlibpaper.Sender;
 import gg.quartzdev.lib.qlibpaper.commands.QCommand;
 import gg.quartzdev.lib.qlibpaper.lang.QMessage;
+import gg.quartzdev.qgptrade.TradeAPI;
+import gg.quartzdev.qgptrade.transaction.Transaction;
 import gg.quartzdev.qgptrade.util.Messages;
 import me.ryanhamshire.GriefPrevention.GriefPrevention;
 import me.ryanhamshire.GriefPrevention.PlayerData;
@@ -39,7 +41,7 @@ public class CMDwithdraw extends QCommand {
         }
 
 //        Gets GP data
-        PlayerData playerData = GriefPrevention.instance.dataStore.getPlayerData(player.getUniqueId());
+        PlayerData playerData = GriefPrevention.instance.dataStore.getPlayerData(getId(player));
         if(playerData == null){
             Sender.message(sender, Messages.ERROR_WITHDRAW_LOAD_PLAYER.parse("player", sender.getName()));
             return false;
@@ -67,6 +69,11 @@ public class CMDwithdraw extends QCommand {
             playerData.setAccruedClaimBlocks(blocksAccrued - blocksToWithdraw);
         }
         savePlayerData(player, playerData);
+
+        Transaction transaction = TradeAPI.getTransactionManager().createTransaction(player, blocksToWithdraw);
+
+        Sender.broadcast("created transaction: " + transaction);
+        player.getInventory().addItem(transaction.slip());
 
         QMessage successResponse = Messages.WITHDRAW_CLAIMBLOCKS
                 .parse("blocks_withdraw", String.valueOf(blocksToWithdraw))
@@ -99,9 +106,11 @@ public class CMDwithdraw extends QCommand {
     }
 
     private void savePlayerData(Player player, PlayerData playerData){
-        UUID id = Bukkit.getOnlineMode() ?
+        GriefPrevention.instance.dataStore.savePlayerData(getId(player), playerData);
+    }
+    private UUID getId(Player player){
+        return Bukkit.getOnlineMode() ?
                 player.getUniqueId() :
                 UUID.nameUUIDFromBytes(("OfflinePlayer:" + player.getName()).getBytes(Charsets.UTF_8));
-        GriefPrevention.instance.dataStore.savePlayerData(id, playerData);
     }
 }

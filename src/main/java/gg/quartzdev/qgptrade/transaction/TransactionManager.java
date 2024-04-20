@@ -4,6 +4,7 @@ import gg.quartzdev.lib.qlibpaper.Sender;
 import gg.quartzdev.qgptrade.TradeAPI;
 import gg.quartzdev.qgptrade.storage.YMLtransactions;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
@@ -30,6 +31,12 @@ public class TransactionManager {
 
     public @Nullable Transaction getTransaction(UUID transactionId){
         return transactions.get(transactionId);
+    }
+
+    public @NotNull Transaction createTransaction(Player creator, int claimBlocks){
+        Transaction transaction = new Transaction(creator, claimBlocks);
+        transactions.put(transaction.getId(), transaction);
+        return transaction;
     }
 
 }

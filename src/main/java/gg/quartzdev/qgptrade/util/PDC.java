@@ -72,10 +72,4 @@ public class PDC {
         pdc.set(transactionKey, DataType.UUID, transactionId);
     }
 
-    public static void setTransactionId(ItemStack itemStack, UUID transactionId){
-        final ItemMeta itemMeta = itemStack.getItemMeta();
-        setTransactionId(itemMeta, transactionId);
-        itemStack.setItemMeta(itemMeta);
-    }
-
 }

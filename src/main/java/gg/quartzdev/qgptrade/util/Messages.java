@@ -11,7 +11,7 @@ public class Messages extends GenericMessages {
     YMLmessages messagesFile;
     public static QMessage WITHDRAW_CLAIMBLOCKS = new QMessage("" +
             "<prefix> <blue>You withdrew <yellow><blocks_withdraw> <blue>claim blocks<newline>" +
-            "<prefix>You now have <yellow><blocks_remaining> <blue>remaining.");
+            "<prefix> You now have <yellow><blocks_remaining> <blue>remaining.");
     public static QMessage ERROR_WITHDRAW_LOAD_PLAYER = new QMessage("<prefix> <red>Error: Unable to load GriefPrevention data for player <player>");
 
     public static QMessage VAULT_HOOKED = new QMessage("<prefix> <green>Successfully hooked into <yellow>Vault's<green> Economy");
