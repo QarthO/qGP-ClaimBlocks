@@ -7,10 +7,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Config extends QConfiguration {
 
 
-    private final String PATH_REQUIRES_PERMiSSION = "requires-permission";
-    private final String PATH_DEPOSIT_SLIP__MATERIAL = "deposit-slip.material";
-    private final String PATH_DEPOSIT_SLIP__NAME = "deposit-slip.name";
-    private final String PATH_DEPOSIT_SLIP__LORE = "deposit-slip.lore";
+    private final String PATH_WITHDRAW__REQUIRES_PERMISSION = "withdraw.requires-permission";
+    private final String PATH_WITHDRAW__DESPOIT_SLIP__MATERIAL = "withdraw.deposit-slip.material";
+    private final String PATH_WITHDRAW__DESPOIT_SLIP__NAME = "withdraw.deposit-slip.name";
+    private final String PATH_WITHDRAW__DESPOIT_SLIP__LORE = "withdraw.deposit-slip.lore";
     private boolean requiresPermission = false;
     private Material depositSlipMaterial = Material.PAPER;
 
@@ -30,29 +30,16 @@ public class Config extends QConfiguration {
     public void saveAllData() {
         saveDepositSlipMaterial();
     }
-
-//    requires permission
-    public void loadRequiresPermission(){
-        requiresPermission = this.yamlConfiguration.getBoolean("requires-permission");
-    }
-    public boolean requiresPermisison(){
-        return requiresPermission;
-    }
-    public void setRequiresPermission(boolean shouldRequiresPermission){
-        requiresPermission = shouldRequiresPermission;
-        this.yamlConfiguration.set("requires-permission", shouldRequiresPermission);
-        save();
-    }
-
-//
-    final String PATH_DEPOPSIT_SLIP_MATERIAL = "deposit-slip-material";
     public void loadDepositSlipMaterial(){
-        depositSlipMaterial = getMaterial(PATH_DEPOPSIT_SLIP_MATERIAL);
+        depositSlipMaterial = getMaterial(PATH_WITHDRAW__DESPOIT_SLIP__MATERIAL);
+        if(depositSlipMaterial == null){
+            depositSlipMaterial = Material.PAPER;
+        }
     }
     public Material getDepositSlipMaterial(){
         return depositSlipMaterial;
     }
     public void saveDepositSlipMaterial(){
-        yamlConfiguration.set(PATH_DEPOPSIT_SLIP_MATERIAL, depositSlipMaterial.name());
+        yamlConfiguration.set(PATH_WITHDRAW__DESPOIT_SLIP__MATERIAL, depositSlipMaterial.name());
     }
 }
