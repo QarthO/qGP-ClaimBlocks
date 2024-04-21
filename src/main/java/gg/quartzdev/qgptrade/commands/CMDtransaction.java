@@ -20,13 +20,13 @@ public class CMDtransaction extends QCommand {
     @Override
     public boolean logic(CommandSender sender, String label, String[] args) {
         Set<UUID> transactionIds = transactionManager.getTransactionIds();
-        Sender.message(sender, "<prefix> <blue>There are " + transactionIds.size() + "transactions");
+        Sender.message(sender, "<prefix> <blue>There are <yellow>" + transactionIds.size() + " <blue>transactions");
         return false;
     }
 
     @Override
     public Iterable<String> tabCompletionLogic(CommandSender sender, String[] args) {
-        if(args.length == 1){
+        if(args.length == 2){
             return transactionManager.getTransactionIds().stream().map(UUID::toString).collect(Collectors.toList());
         }
         return null;

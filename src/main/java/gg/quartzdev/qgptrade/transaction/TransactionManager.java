@@ -26,7 +26,7 @@ public class TransactionManager {
 
     public void loadTransactions(){
         transactions.clear();
-        for(Transaction transaction : transactionStorage.getTransactions()){
+        for(Transaction transaction : transactionStorage.loadTransactions()){
             transactions.put(transaction.getId(), transaction);
         }
     }

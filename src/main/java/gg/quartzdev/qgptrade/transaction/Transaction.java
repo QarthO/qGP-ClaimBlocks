@@ -7,6 +7,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
+import org.bukkit.configuration.serialization.SerializableAs;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -14,6 +15,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
+@SerializableAs("qTransaction")
 public class Transaction implements ConfigurationSerializable {
 
     private UUID transactionId;
@@ -34,7 +36,6 @@ public class Transaction implements ConfigurationSerializable {
         this.claimBlocks = (int) map.get("claim-blocks");
         this.withdrawerId = UUID.fromString((String) map.get("withdrawer-id"));
         this.withdrawerName = (String) map.get("withdrawer-name");
-        createSlip();
     }
 
     public void initId(String id){
@@ -45,7 +46,7 @@ public class Transaction implements ConfigurationSerializable {
         transactionId = UUID.fromString(id);
     }
 
-    private void createSlip(){
+    public void createSlip(){
         slip = new ItemStack(TradeAPI.getConfig().getSlipMaterial());
         ItemMeta itemMeta = slip.getItemMeta();
         PDC.setTransactionId(itemMeta, transactionId);
