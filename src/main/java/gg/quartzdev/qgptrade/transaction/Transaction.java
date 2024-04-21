@@ -5,6 +5,8 @@ import gg.quartzdev.lib.qlibpaper.Sender;
 import gg.quartzdev.qgptrade.TradeAPI;
 import gg.quartzdev.qgptrade.util.PDC;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextDecoration;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Material;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.entity.Player;
@@ -13,17 +15,13 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.Instant;
-import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class Transaction implements ConfigurationSerializable {
 
     private UUID transactionId;
     private UUID creatorId;
     private int claimBlocks;
-    private Date creationDate;
     private ItemStack slip;
 
     public Transaction(Player creator, int claimBlocks){
@@ -36,7 +34,6 @@ public class Transaction implements ConfigurationSerializable {
     public Transaction(Map<String, Object> map){
         this.creatorId = UUID.fromString((String) map.get("creator-id"));
         this.claimBlocks = (int) map.get("claim-blocks");
-        this.creationDate = Date.from(Instant.ofEpochMilli((long) map.get("creation-date")));
         createSlip();
     }
 
@@ -49,12 +46,10 @@ public class Transaction implements ConfigurationSerializable {
     }
 
     private void createSlip(){
-        Sender.broadcast("creating slip");
-        slip = new ItemStack(TradeAPI.getConfig().getDepositSlipMaterial());
-        slip.setType(Material.DIAMOND);
+        slip = new ItemStack(TradeAPI.getConfig().getSlipMaterial());
         ItemMeta itemMeta = slip.getItemMeta();
         PDC.setTransactionId(itemMeta, transactionId);
-        updateLore(itemMeta);
+        updateNameLore(itemMeta);
         slip.setItemMeta(itemMeta);
     }
 
@@ -74,9 +69,21 @@ public class Transaction implements ConfigurationSerializable {
         return slip;
     }
 
-    public void updateLore(ItemMeta itemMeta){
-        Sender.broadcast("updating lore");
-        itemMeta.displayName(Component.text("sup"));
+    public void updateNameLore(ItemMeta itemMeta){
+        Component name = MiniMessage.miniMessage().deserialize(
+                TradeAPI.getConfig().getSlipName()
+                        .replaceAll("<blocks_withdraw>", String.valueOf(claimBlocks))
+        ).decoration(TextDecoration.ITALIC, false);
+        itemMeta.displayName(name);
+        List<Component> lore = new ArrayList<>();
+        for(String loreLine : TradeAPI.getConfig().getSlipLore()){
+            loreLine = loreLine
+                    .replaceAll("<id>", String.valueOf(transactionId))
+                    .replaceAll("<withdrawer>", String.valueOf(creatorId))
+                    .replaceAll("<blocks>", String.valueOf(claimBlocks));
+            lore.add(MiniMessage.miniMessage().deserialize(loreLine).decoration(TextDecoration.ITALIC, false));
+        }
+        itemMeta.lore(lore);
     }
 
     @Override
@@ -84,7 +91,6 @@ public class Transaction implements ConfigurationSerializable {
         LinkedHashMap<String, Object> map = new LinkedHashMap<String, Object>();
         map.put("creator-id", creatorId);
         map.put("claim-blocks", claimBlocks);
-        map.put("creation-date", creationDate.getTime());
         return map;
     }
 

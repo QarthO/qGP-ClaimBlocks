@@ -20,10 +20,8 @@ check-updates: true
 # +------------------------------------------------------+ #
 ############################################################
 
+# requires permission: 'qgptrade.command.withdraw'
 withdraw:
-# Should permission 'qgptrade.command.withdraw' be required to use the command
-  requires-permission: true
-
 # The minimum amount of blocks a player can withdraw into a deposit slip
   minimum-claim-blocks: 100
 
@@ -39,19 +37,16 @@ withdraw:
     lore:
       - "Claimblocks: <blocks>"
       - "Withdrawer: <owner>"
-      - "Withdrawn Date: <date>"
       - "ID: <id>"
 
 ############################################################
 # +------------------------------------------------------+ #
-# |                         Send                         | #
+# |                      Transfer                        | #
 # +------------------------------------------------------+ #
 ############################################################
 
+# requires permission: 'qgptrade.command.transfer'
 send:
-# Should permission 'qgptrade.command.send' be required to use the command
-  requires-permission: true
-
   # The minimum amount of blocks a player can send
   minimum-claim-blocks: 100
 

@@ -55,12 +55,11 @@ public class TradeAPI implements QPluginAPI {
         if(bStatsPluginId > 0){
             setupMetrics(bStatsPluginId);
         }
-
-        registerCommands();
-        registerListeners();
         setupConfig();
+        registerListeners();
         setupEconomy();
         setupTransactionManager();
+        registerCommands();
     }
 
     protected static void enable(QGPTrade plugin, int bStatsPluginId){
