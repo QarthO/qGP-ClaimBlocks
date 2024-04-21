@@ -32,6 +32,15 @@ public class YMLtransactions extends QConfiguration {
         yamlConfiguration.set("transactions." + transaction.getId(), transaction);
         save();
     }
+    public void deleteTransaction(Transaction transaction){
+        ConfigurationSection transactionSection = yamlConfiguration.getConfigurationSection("transactions");
+        if(transactionSection == null){
+            return;
+        }
+        transactionSection.set(transaction.getId().toString(), null);
+        yamlConfiguration.set("transactions", transactionSection);
+        save();
+    }
 
     public @NotNull List<Transaction> loadTransactions(){
         List<Transaction> transactions = new ArrayList<>();

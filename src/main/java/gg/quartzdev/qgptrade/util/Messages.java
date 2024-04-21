@@ -1,6 +1,5 @@
 package gg.quartzdev.qgptrade.util;
 
-import gg.quartzdev.lib.qlibpaper.QLogger;
 import gg.quartzdev.lib.qlibpaper.lang.GenericMessages;
 import gg.quartzdev.lib.qlibpaper.lang.QMessage;
 import gg.quartzdev.qgptrade.TradeAPI;
@@ -12,12 +11,13 @@ public class Messages extends GenericMessages {
 
 //    WITHDRAW CLAIMBLOCKS
     public static QMessage SYNTAX_WITHDRAW = new QMessage("<prefix> <red>Syntax: /<label> withdraw <amount>");
+    public static QMessage SYNTAX_TRANSACTION = new QMessage("<prefix> <red>Syntax: /<label> transaction <id>");
     public static QMessage WITHDRAW_CLAIMBLOCKS = new QMessage("" +
             "<prefix> <blue>You withdrew <yellow><blocks_withdraw> <blue>claim blocks<newline>" +
             "<prefix> <blue>You now have <yellow><blocks_remaining> <blue>remaining");
     public static QMessage ERROR_WITHDRAW_NOT_ENOUGH_CLAIM_BLOCKS = new QMessage("" +
             "<prefix> <red>Error: You only have <yellow><blocks> <red>claim blocks");
-    public static QMessage ERROR_WITHDRAW_LOAD_CLAIM_BLOCKS = new QMessage("" +
+    public static QMessage ERROR_LOAD_CLAIM_BLOCKS = new QMessage("" +
             "<prefix> <red>Error: Unable to load your claim blocks data from GriefPrevention");
     public static QMessage ERROR_WITHDRAW_INVALID_NUMBER = new QMessage("" +
             "<prefix> <red>Error: <yellow><input> <red>is an invalid number");

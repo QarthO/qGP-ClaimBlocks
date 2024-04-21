@@ -42,6 +42,11 @@ public class TransactionManager {
         return transaction;
     }
 
+    public void closeTransaction(Transaction transaction){
+        transactionStorage.deleteTransaction(transaction);
+        transactions.remove(transaction.getId());
+    }
+
     public Set<UUID> getTransactionIds(){
         return transactions.keySet();
     }

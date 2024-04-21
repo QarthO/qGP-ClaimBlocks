@@ -42,7 +42,7 @@ public class CMDwithdraw extends QCommand {
 //        Loads player's claim blocks
         PlayerData playerData = GriefPrevention.instance.dataStore.getPlayerData(player.getUniqueId());
         if(playerData == null){
-            Sender.message(sender, Messages.ERROR_WITHDRAW_LOAD_CLAIM_BLOCKS);
+            Sender.message(sender, Messages.ERROR_LOAD_CLAIM_BLOCKS);
             return false;
         }
 
