@@ -1,6 +1,5 @@
 package gg.quartzdev.qgptrade.commands;
 
-import com.google.common.base.Charsets;
 import gg.quartzdev.lib.qlibpaper.Sender;
 import gg.quartzdev.lib.qlibpaper.commands.QCommand;
 import gg.quartzdev.lib.qlibpaper.lang.QMessage;
@@ -11,14 +10,11 @@ import gg.quartzdev.qgptrade.util.Args;
 import gg.quartzdev.qgptrade.util.Messages;
 import me.ryanhamshire.GriefPrevention.GriefPrevention;
 import me.ryanhamshire.GriefPrevention.PlayerData;
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 
 public class CMDwithdraw extends QCommand {
     Config config;
@@ -52,12 +48,26 @@ public class CMDwithdraw extends QCommand {
 
         int blocksToWithdraw = Args.parseInt(args[1]);
         int tax = 0;
-        if(blocksToWithdraw <= config.getWithdrawMin() + tax || blocksToWithdraw >= config.getWithdrawMax()){
+
+        if(blocksToWithdraw == 0){
             Sender.message(sender,
-                    Messages.ERROR_WITHDRAW_INVALID_NUMBER
-                            .parse("blocks_minimum", String.valueOf(config.getWithdrawMin())));
+                    Messages.ERROR_WITHDRAW_INVALID_NUMBER.parse("input", args[1])
+            );
             return false;
         }
+
+        if(blocksToWithdraw < config.getWithdrawMin() + tax){
+            Sender.message(sender,
+                    Messages.ERROR_WITHDRAW_INVALID_NUMBER_MIN.parse("blocks", String.valueOf(config.getWithdrawMin() + tax)));
+            return false;
+        }
+
+        if(blocksToWithdraw > config.getWithdrawMax() - tax){
+            Sender.message(sender,
+                    Messages.ERROR_WITHDRAW_INVALID_NUMBER_MAX);
+            return false;
+        }
+
         int blocksAvailable = playerData.getRemainingClaimBlocks();
         int blocksRemaining = blocksAvailable - blocksToWithdraw;
 

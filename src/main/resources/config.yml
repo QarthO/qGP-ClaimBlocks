@@ -22,21 +22,22 @@ check-updates: true
 
 # requires permission: 'qgptrade.command.withdraw'
 withdraw:
-# The minimum amount of blocks a player can withdraw into a deposit slip
-  minimum-claim-blocks: 100
+  # The minimum amount of blocks a player can withdraw into a deposit slip
+  min-claim-blocks: 100
 
-# The maxmimum amount of blocks a player can withdraw into a deposit slip
-  maximum-claim-blocks: -1
+  # The maxmimum amount of blocks a player can withdraw into a deposit slip
+  # Use '-1' to disable
+  max-claim-blocks: -1
 
-# Full customization over the deposit slip (aka voucher)
-# Full material list: https://jd.papermc.io/paper/1.20/org/bukkit/Material.html
-# Supports MiniMessage format: https://docs.advntr.dev/minimessage/format.html
+  # Full customization over the deposit slip (aka voucher)
+  # Full material list: https://jd.papermc.io/paper/1.20/org/bukkit/Material.html
+  # Supports MiniMessage format: https://docs.advntr.dev/minimessage/format.html
   deposit-slip:
     material: PAPER
     name: "<yellow><bold><blocks> Claim Blocks"
     lore:
       - "Claimblocks: <blocks>"
-      - "Withdrawer: <owner>"
+      - "Withdrawer: <withdrawer>"
       - "ID: <id>"
 
 ############################################################
@@ -48,10 +49,11 @@ withdraw:
 # requires permission: 'qgptrade.command.transfer'
 send:
   # The minimum amount of blocks a player can send
-  minimum-claim-blocks: 100
+  min-claim-blocks: 100
 
   # The maxmimum amount of blocks a player can send
-  maximum-claim-blocks: -1
+  # Use '-1' to disable
+  max-claim-blocks: -1
 
 ############################################################
 # +------------------------------------------------------+ #

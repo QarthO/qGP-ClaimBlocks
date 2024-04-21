@@ -1,38 +1,37 @@
 package gg.quartzdev.qgptrade.transaction;
 
 import gg.quartzdev.lib.qlibpaper.QLogger;
-import gg.quartzdev.lib.qlibpaper.Sender;
 import gg.quartzdev.qgptrade.TradeAPI;
 import gg.quartzdev.qgptrade.util.PDC;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.minimessage.MiniMessage;
-import org.bukkit.Material;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 
-import java.time.Instant;
 import java.util.*;
 
 public class Transaction implements ConfigurationSerializable {
 
     private UUID transactionId;
-    private UUID creatorId;
+    private UUID withdrawerId;
+    private String withdrawerName;
     private int claimBlocks;
     private ItemStack slip;
 
-    public Transaction(Player creator, int claimBlocks){
+    public Transaction(Player withdrawer, int claimBlocks){
         this.transactionId = UUID.randomUUID();
-        this.creatorId = creator.getUniqueId();
         this.claimBlocks = claimBlocks;
+        this.withdrawerId = withdrawer.getUniqueId();
+        this.withdrawerName = withdrawer.getName();
         createSlip();
     }
 
     public Transaction(Map<String, Object> map){
-        this.creatorId = UUID.fromString((String) map.get("creator-id"));
+        this.withdrawerId = UUID.fromString((String) map.get("creator-id"));
         this.claimBlocks = (int) map.get("claim-blocks");
         createSlip();
     }
@@ -72,14 +71,14 @@ public class Transaction implements ConfigurationSerializable {
     public void updateNameLore(ItemMeta itemMeta){
         Component name = MiniMessage.miniMessage().deserialize(
                 TradeAPI.getConfig().getSlipName()
-                        .replaceAll("<blocks_withdraw>", String.valueOf(claimBlocks))
+                        .replaceAll("<blocks>", String.valueOf(claimBlocks))
         ).decoration(TextDecoration.ITALIC, false);
         itemMeta.displayName(name);
         List<Component> lore = new ArrayList<>();
         for(String loreLine : TradeAPI.getConfig().getSlipLore()){
             loreLine = loreLine
                     .replaceAll("<id>", String.valueOf(transactionId))
-                    .replaceAll("<withdrawer>", String.valueOf(creatorId))
+                    .replaceAll("<withdrawer>", withdrawerName)
                     .replaceAll("<blocks>", String.valueOf(claimBlocks));
             lore.add(MiniMessage.miniMessage().deserialize(loreLine).decoration(TextDecoration.ITALIC, false));
         }
@@ -89,13 +88,13 @@ public class Transaction implements ConfigurationSerializable {
     @Override
     public @NotNull LinkedHashMap<String, Object> serialize() {
         LinkedHashMap<String, Object> map = new LinkedHashMap<String, Object>();
-        map.put("creator-id", creatorId);
+        map.put("creator-id", withdrawerId);
         map.put("claim-blocks", claimBlocks);
         return map;
     }
 
     @Override
     public String toString(){
-        return "Transaction: " + transactionId + ", Withdrawer: " + creatorId + ", Claimblocks: " + claimBlocks;
+        return "Transaction: " + transactionId + ", Withdrawer: " + withdrawerId + ", Claimblocks: " + claimBlocks;
     }
 }

@@ -20,12 +20,16 @@ public class Messages extends GenericMessages {
     public static QMessage ERROR_WITHDRAW_LOAD_CLAIM_BLOCKS = new QMessage("" +
             "<prefix> <red>Error: Unable to load your claim blocks data from GriefPrevention");
     public static QMessage ERROR_WITHDRAW_INVALID_NUMBER = new QMessage("" +
-            "<prefix> <red>Error: You must withdraw at least <blocks_minimum> claim blocks");
+            "<prefix> <red>Error: <yellow><input> <red>is an invalid number");
+    public static QMessage ERROR_WITHDRAW_INVALID_NUMBER_MAX = new QMessage("" +
+            "<prefix> <red>Error: You can't withdraw that many claim blocks");
+    public static QMessage ERROR_WITHDRAW_INVALID_NUMBER_MIN = new QMessage("" +
+            "<prefix> <red>Error: You must withdraw at least <blocks> claim blocks");
 
+//    Deposit
     public static QMessage DEPOSIT_CLAIM_BLOCKS = new QMessage("" +
             "<prefix> <blue>You deposited <yellow><blocks_deposit> <blue>claim blocks<newline>" +
             "<prefix> <blue>You now have <yellow><blocks_remaining> <blue>available claim blocks");
-
 
     public static QMessage VAULT_HOOKED = new QMessage("<prefix> <green>Successfully hooked into <yellow>Vault's<green> Economy");
     public static QMessage ERROR_VAULT_HOOK = new QMessage("<prefix> <red>Error: Vault found, but unable to hook into it's economy");
@@ -39,14 +43,6 @@ public class Messages extends GenericMessages {
             return;
         }
         INSTANCE = new Messages(consolePrefix, chatPrefix);
-        System.out.println("=================");
-        System.out.println("=================");
-        System.out.println("=================");
-        System.out.println(CONSOLE_PREFIX.get());
-        System.out.println(CHAT_PREFIX.get());
-        System.out.println("=================");
-        System.out.println("=================");
-        System.out.println("=================");
     }
 
 

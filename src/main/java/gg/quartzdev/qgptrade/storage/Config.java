@@ -7,11 +7,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.List;
 
 public class Config extends QConfiguration {
-    private final String PATH_WITHDRAW__MIN = "withdraw.min-claim-blocks";
-    private final String PATH_WITHDRAW__MAX = "withdraw.max-claim-blocks";
-    private final String PATH_SLIP_MATERIAL = "withdraw.deposit-slip.material";
-    private final String PATH_SLIP_NAME = "withdraw.deposit-slip.name";
-    private final String PATH_SLIP_LORE = "withdraw.deposit-slip.lore";
+    private final String PATH_WITHDRAW__MIN     = "withdraw.min-claim-blocks";
+    private final String PATH_WITHDRAW__MAX     = "withdraw.max-claim-blocks";
+    private final String PATH_SLIP_MATERIAL     = "withdraw.deposit-slip.material";
+    private final String PATH_SLIP_NAME         = "withdraw.deposit-slip.name";
+    private final String PATH_SLIP_LORE         = "withdraw.deposit-slip.lore";
     private int withdrawMin;
     private int withdrawMax;
     private Material slipMaterial;
@@ -30,6 +30,7 @@ public class Config extends QConfiguration {
                 "<blue>Withdrawer: <yellow><player>",
                 "<blue>Claim Blocks: <yellow><blocks>");
         slipMaterial = Material.PAPER;
+        loadAllData();
     }
 
     @Override
@@ -62,6 +63,10 @@ public class Config extends QConfiguration {
 //    withdraw max
     public void loadWithdrawMax(){
         withdrawMax = getNumber(PATH_WITHDRAW__MAX).intValue();
+        if(withdrawMax <= -1){
+            yamlConfiguration.set(PATH_WITHDRAW__MAX, -1);
+            withdrawMax = Integer.MAX_VALUE;
+        }
     }
     public void setWithdrawMax(int value){
         withdrawMax = value;
