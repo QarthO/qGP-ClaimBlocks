@@ -16,7 +16,7 @@ public class Messages extends GenericMessages {
             "<prefix> <blue>You withdrew <yellow><blocks_withdraw> <blue>claim blocks<newline>" +
             "<prefix> <blue>You now have <yellow><blocks_remaining> <blue>remaining");
     public static QMessage ERROR_WITHDRAW_NOT_ENOUGH_CLAIM_BLOCKS = new QMessage("" +
-            "<prefix> <red>Error: You don't have enough claim blocks");
+            "<prefix> <red>Error: You only have <yellow><blocks> <red>claim blocks");
     public static QMessage ERROR_WITHDRAW_LOAD_CLAIM_BLOCKS = new QMessage("" +
             "<prefix> <red>Error: Unable to load your claim blocks data from GriefPrevention");
     public static QMessage ERROR_WITHDRAW_INVALID_NUMBER = new QMessage("" +

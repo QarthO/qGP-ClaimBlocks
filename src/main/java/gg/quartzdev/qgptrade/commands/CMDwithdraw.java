@@ -51,14 +51,16 @@ public class CMDwithdraw extends QCommand {
 
         if(blocksToWithdraw == 0){
             Sender.message(sender,
-                    Messages.ERROR_WITHDRAW_INVALID_NUMBER.parse("input", args[1])
+                    Messages.ERROR_WITHDRAW_INVALID_NUMBER
+                            .parse("input", args[1])
             );
             return false;
         }
 
         if(blocksToWithdraw < config.getWithdrawMin() + tax){
             Sender.message(sender,
-                    Messages.ERROR_WITHDRAW_INVALID_NUMBER_MIN.parse("blocks", String.valueOf(config.getWithdrawMin() + tax)));
+                    Messages.ERROR_WITHDRAW_INVALID_NUMBER_MIN
+                            .parse("blocks", String.valueOf(config.getWithdrawMin() + tax)));
             return false;
         }
 
@@ -72,7 +74,9 @@ public class CMDwithdraw extends QCommand {
         int blocksRemaining = blocksAvailable - blocksToWithdraw;
 
         if(blocksRemaining < 0){
-            Sender.message(player, Messages.ERROR_WITHDRAW_NOT_ENOUGH_CLAIM_BLOCKS);
+            Sender.message(player, Messages.ERROR_WITHDRAW_NOT_ENOUGH_CLAIM_BLOCKS
+                    .parse("blocks", String.valueOf(blocksAvailable))
+            );
             return false;
         }
 

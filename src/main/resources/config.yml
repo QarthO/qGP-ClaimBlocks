@@ -36,9 +36,9 @@ withdraw:
     material: PAPER
     name: "<yellow><bold><blocks> Claim Blocks"
     lore:
-      - "Claimblocks: <blocks>"
-      - "Withdrawer: <withdrawer>"
-      - "ID: <id>"
+      - "<blue>Claimblocks: <green><blocks>"
+      - "<blue>Withdrawer: <green><withdrawer>"
+      - "<blue>Slip ID: <green><id>"
 
 ############################################################
 # +------------------------------------------------------+ #
