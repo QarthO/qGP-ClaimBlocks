@@ -8,6 +8,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 public class TransactionManager {
@@ -36,7 +38,12 @@ public class TransactionManager {
     public @NotNull Transaction createTransaction(Player creator, int claimBlocks){
         Transaction transaction = new Transaction(creator, claimBlocks);
         transactions.put(transaction.getId(), transaction);
+        transactionStorage.saveTransaction(transaction);
         return transaction;
+    }
+
+    public Set<UUID> getTransactionIds(){
+        return transactions.keySet();
     }
 
 }

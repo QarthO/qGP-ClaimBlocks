@@ -31,8 +31,9 @@ public class Transaction implements ConfigurationSerializable {
     }
 
     public Transaction(Map<String, Object> map){
-        this.withdrawerId = UUID.fromString((String) map.get("creator-id"));
         this.claimBlocks = (int) map.get("claim-blocks");
+        this.withdrawerId = UUID.fromString((String) map.get("withdrawer-id"));
+        this.withdrawerName = (String) map.get("withdrawer-name");
         createSlip();
     }
 
@@ -88,8 +89,9 @@ public class Transaction implements ConfigurationSerializable {
     @Override
     public @NotNull LinkedHashMap<String, Object> serialize() {
         LinkedHashMap<String, Object> map = new LinkedHashMap<String, Object>();
-        map.put("creator-id", withdrawerId);
         map.put("claim-blocks", claimBlocks);
+        map.put("withdrawer-id", withdrawerId.toString());
+        map.put("withdrawer-name", withdrawerName);
         return map;
     }
 

@@ -7,6 +7,7 @@ import gg.quartzdev.lib.qlibpaper.lang.GenericMessages;
 import gg.quartzdev.lib.qlibpaper.QLogger;
 import gg.quartzdev.qgptrade.commands.CMD;
 import gg.quartzdev.qgptrade.commands.CMDreload;
+import gg.quartzdev.qgptrade.commands.CMDtransaction;
 import gg.quartzdev.qgptrade.commands.CMDwithdraw;
 import gg.quartzdev.qgptrade.listeners.ExploitListener;
 import gg.quartzdev.qgptrade.listeners.SlipListener;
@@ -115,9 +116,11 @@ public class TradeAPI implements QPluginAPI {
 
     public void registerCommands(){
         commandMap = new QCommandMap();
-        commandMap.create(pluginInstance.getName(), new CMD("", QPerm.GROUP_PLAYER), List.of("claimblocks", "cb"));
-        commandMap.addSubCommand(pluginInstance.getName(), new CMDreload("reload", QPerm.GROUP_ADMIN));
-        commandMap.addSubCommand(pluginInstance.getName(), new CMDwithdraw("withdraw", QPerm.GROUP_PLAYER));
+        String label = "qgptrust";
+        commandMap.create(label, new CMD("", QPerm.GROUP_PLAYER), List.of("claimblocks", "cb"));
+        commandMap.addSubCommand(label, new CMDreload("reload", QPerm.GROUP_ADMIN));
+        commandMap.addSubCommand(label, new CMDwithdraw("withdraw", QPerm.GROUP_PLAYER));
+        commandMap.addSubCommand(label, new CMDtransaction("transaction", QPerm.GROUP_ADMIN));
     }
 
     public void registerListeners(){

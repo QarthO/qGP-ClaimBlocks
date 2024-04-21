@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.UUID;
 
 public class YMLtransactions extends QConfiguration {
+
+    final List<Transaction> transactions;
     public YMLtransactions(JavaPlugin plugin, String fileName) {
         super(plugin, fileName);
         transactions = new ArrayList<>();
@@ -26,7 +28,10 @@ public class YMLtransactions extends QConfiguration {
 
     }
 
-    final List<Transaction> transactions;
+    public void saveTransaction(Transaction transaction){
+        yamlConfiguration.set("transactions." + transaction.getId(), transaction);
+        save();
+    }
 
     public void loadTransactions(){
         transactions.clear();
