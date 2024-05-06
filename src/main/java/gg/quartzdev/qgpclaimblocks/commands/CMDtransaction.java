@@ -1,11 +1,11 @@
-package gg.quartzdev.qgptrade.commands;
+package gg.quartzdev.qgpclaimblocks.commands;
 
 import gg.quartzdev.lib.qlibpaper.Sender;
 import gg.quartzdev.lib.qlibpaper.commands.QCommand;
-import gg.quartzdev.qgptrade.TradeAPI;
-import gg.quartzdev.qgptrade.transaction.Transaction;
-import gg.quartzdev.qgptrade.transaction.TransactionManager;
-import gg.quartzdev.qgptrade.util.Messages;
+import gg.quartzdev.qgpclaimblocks.ClaimBlocksAPI;
+import gg.quartzdev.qgpclaimblocks.transaction.Transaction;
+import gg.quartzdev.qgpclaimblocks.transaction.TransactionManager;
+import gg.quartzdev.qgpclaimblocks.util.Messages;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -17,7 +17,7 @@ public class CMDtransaction extends QCommand {
     TransactionManager transactionManager;
     public CMDtransaction(String commandName, String permissionGroup) {
         super(commandName, permissionGroup);
-        transactionManager = TradeAPI.getTransactionManager();
+        transactionManager = ClaimBlocksAPI.getTransactionManager();
     }
 
     @Override

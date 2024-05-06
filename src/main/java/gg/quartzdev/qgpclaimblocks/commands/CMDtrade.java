@@ -1,4 +1,4 @@
-package gg.quartzdev.qgptrade.commands;
+package gg.quartzdev.qgpclaimblocks.commands;
 
 import gg.quartzdev.lib.qlibpaper.commands.QCommand;
 import org.bukkit.command.CommandSender;
@@ -9,7 +9,7 @@ public class CMDtrade extends QCommand {
     }
 
     @Override
-    public boolean logic(CommandSender commandSender, String s, String[] strings) {
+    public boolean logic(CommandSender sender, String label, String[] args) {
         return false;
     }
 

@@ -1,9 +1,9 @@
-package gg.quartzdev.qgptrade.util;
+package gg.quartzdev.qgpclaimblocks.util;
 
 import gg.quartzdev.lib.qlibpaper.lang.GenericMessages;
 import gg.quartzdev.lib.qlibpaper.lang.QMessage;
-import gg.quartzdev.qgptrade.TradeAPI;
-import gg.quartzdev.qgptrade.storage.YMLmessages;
+import gg.quartzdev.qgpclaimblocks.ClaimBlocksAPI;
+import gg.quartzdev.qgpclaimblocks.storage.YMLmessages;
 
 public class Messages extends GenericMessages {
     private static Messages INSTANCE;
@@ -32,11 +32,12 @@ public class Messages extends GenericMessages {
             "<prefix> <blue>You now have <yellow><blocks_remaining> <blue>available claim blocks");
 
     public static QMessage VAULT_HOOKED = new QMessage("<prefix> <green>Successfully hooked into <yellow>Vault's<green> Economy");
-    public static QMessage ERROR_VAULT_HOOK = new QMessage("<prefix> <red>Error: Vault found, but unable to hook into it's economy");
+    public static QMessage ERROR_VAULT_HOOK = new QMessage("<prefix> <red>Error: Vault found, but unable to find an economy provider. Make sure you have an Economy plugin installed, (ie. EssentialsX, CoinsEngine, etc");
     public static QMessage WARNING_VAULT_NOT_FOUND = new QMessage("<prefix> <yellow> Warning: Vault is required for the economy integration");
+    public static QMessage ERROR_INSUFFICIENT_FUNDS = new QMessage("<prefix> <red>Error: You don't have enough money to do that");
     private Messages(String consolePrefix, String chatPrefix){
         super(consolePrefix, chatPrefix);
-        messagesFile = new YMLmessages(TradeAPI.getPlugin(), "messages.yml");
+        messagesFile = new YMLmessages(ClaimBlocksAPI.getPlugin(), "messages.yml");
     }
     public static void init(String consolePrefix, String chatPrefix){
         if(INSTANCE != null){

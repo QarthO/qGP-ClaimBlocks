@@ -1,13 +1,14 @@
-package gg.quartzdev.qgptrade.commands;
+package gg.quartzdev.qgpclaimblocks.commands;
 
 import gg.quartzdev.lib.qlibpaper.Sender;
 import gg.quartzdev.lib.qlibpaper.commands.QCommand;
 import gg.quartzdev.lib.qlibpaper.lang.QMessage;
-import gg.quartzdev.qgptrade.TradeAPI;
-import gg.quartzdev.qgptrade.storage.Config;
-import gg.quartzdev.qgptrade.transaction.Transaction;
-import gg.quartzdev.qgptrade.util.Args;
-import gg.quartzdev.qgptrade.util.Messages;
+import gg.quartzdev.qgpclaimblocks.ClaimBlocksAPI;
+import gg.quartzdev.qgpclaimblocks.storage.Config;
+import gg.quartzdev.qgpclaimblocks.storage.ConfigPath;
+import gg.quartzdev.qgpclaimblocks.transaction.Transaction;
+import gg.quartzdev.qgpclaimblocks.util.Args;
+import gg.quartzdev.qgpclaimblocks.util.Messages;
 import me.ryanhamshire.GriefPrevention.GriefPrevention;
 import me.ryanhamshire.GriefPrevention.PlayerData;
 import org.bukkit.command.CommandSender;
@@ -21,7 +22,7 @@ public class CMDwithdraw extends QCommand {
 
     public CMDwithdraw(String commandName, String permissionGroup) {
         super(commandName, permissionGroup);
-        config = TradeAPI.getConfig();
+        config = ClaimBlocksAPI.getConfig();
     }
 
     @Override
@@ -57,14 +58,14 @@ public class CMDwithdraw extends QCommand {
             return false;
         }
 
-        if(blocksToWithdraw < config.getWithdrawMin() + tax){
+        if(blocksToWithdraw < config.get(ConfigPath.MIN_WITHDRAW, 0) + tax){
             Sender.message(sender,
                     Messages.ERROR_WITHDRAW_INVALID_NUMBER_MIN
-                            .parse("blocks", String.valueOf(config.getWithdrawMin() + tax)));
+                            .parse("blocks", String.valueOf(config.get(ConfigPath.MIN_WITHDRAW, 0) + tax)));
             return false;
         }
 
-        if(blocksToWithdraw > config.getWithdrawMax() - tax){
+        if(blocksToWithdraw > config.get(ConfigPath.MAX_WITHDRAW, Integer.MAX_VALUE-1) - tax){
             Sender.message(sender,
                     Messages.ERROR_WITHDRAW_INVALID_NUMBER_MAX);
             return false;
@@ -90,7 +91,7 @@ public class CMDwithdraw extends QCommand {
         }
         GriefPrevention.instance.dataStore.savePlayerData(player.getUniqueId(), playerData);
 
-        Transaction transaction = TradeAPI.getTransactionManager().createTransaction(player, blocksToWithdraw);
+        Transaction transaction = ClaimBlocksAPI.getTransactionManager().createTransaction(player, blocksToWithdraw);
         player.getInventory().addItem(transaction.slip());
 
         QMessage successResponse = Messages.WITHDRAW_CLAIMBLOCKS

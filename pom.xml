@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>gg.quartzdev</groupId>
-    <artifactId>qGP-Trade</artifactId>
+    <artifactId>qGP-ClaimBlocks</artifactId>
     <version>1.0-BETA</version>
     <packaging>jar</packaging>
 
@@ -94,7 +94,7 @@
         <dependency>
             <groupId>com.github.QarthO</groupId>
             <artifactId>qlib-paper</artifactId>
-            <version>6e1341b7be</version>
+            <version>33cf352ded</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -106,7 +106,7 @@
         <dependency>
             <groupId>com.github.MilkBowl</groupId>
             <artifactId>VaultAPI</artifactId>
-            <version>1.7</version>
+            <version>1.7.1</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

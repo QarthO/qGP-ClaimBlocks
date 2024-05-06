@@ -1,35 +1,38 @@
-package gg.quartzdev.qgptrade;
+package gg.quartzdev.qgpclaimblocks;
 
 import gg.quartzdev.lib.qlibpaper.QPerm;
 import gg.quartzdev.lib.qlibpaper.QPluginAPI;
 import gg.quartzdev.lib.qlibpaper.commands.QCommandMap;
 import gg.quartzdev.lib.qlibpaper.lang.GenericMessages;
 import gg.quartzdev.lib.qlibpaper.QLogger;
-import gg.quartzdev.qgptrade.commands.CMD;
-import gg.quartzdev.qgptrade.commands.CMDreload;
-import gg.quartzdev.qgptrade.commands.CMDtransaction;
-import gg.quartzdev.qgptrade.commands.CMDwithdraw;
-import gg.quartzdev.qgptrade.listeners.ExploitListener;
-import gg.quartzdev.qgptrade.listeners.SlipListener;
-import gg.quartzdev.qgptrade.storage.Config;
-import gg.quartzdev.qgptrade.transaction.TransactionManager;
-import gg.quartzdev.qgptrade.util.Messages;
-import gg.quartzdev.qgptrade.util.VaultEco;
+import gg.quartzdev.qgpclaimblocks.commands.CMD;
+import gg.quartzdev.qgpclaimblocks.commands.CMDreload;
+import gg.quartzdev.qgpclaimblocks.commands.CMDtransaction;
+import gg.quartzdev.qgpclaimblocks.commands.CMDwithdraw;
+import gg.quartzdev.qgpclaimblocks.listeners.ExploitListener;
+import gg.quartzdev.qgpclaimblocks.listeners.SlipListener;
+import gg.quartzdev.qgpclaimblocks.storage.Config;
+import gg.quartzdev.qgpclaimblocks.transaction.TransactionManager;
+import gg.quartzdev.qgpclaimblocks.util.Messages;
+import gg.quartzdev.qgpclaimblocks.util.VaultUtil;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 
 import java.util.List;
 
-public class TradeAPI implements QPluginAPI {
-    private static TradeAPI apiInstance;
-    private static QGPTrade pluginInstance;
+public class ClaimBlocksAPI implements QPluginAPI {
+    private final String CONSOLE_PREFIX = "<white>[<red>qGP<white>-<aqua>Trade<white>]";
+    private final String CHAT_PREFIX = "<red>qGP<white>-<aqua>Trade <bold><gray>>></bold>";
+
+    private static ClaimBlocksAPI apiInstance;
+    private static QGPClaimBlocks pluginInstance;
     private static QCommandMap commandMap;
     private static Metrics metrics;
     private static Config config;
-    private static VaultEco economy;
+    private static VaultUtil economy;
     private static TransactionManager transactionManager;
 
-    public static QGPTrade getPlugin(){
+    public static QGPClaimBlocks getPlugin(){
         return pluginInstance;
     }
 
@@ -37,7 +40,7 @@ public class TradeAPI implements QPluginAPI {
         return config;
     }
 
-    public static VaultEco getEconomy(){
+    public static VaultUtil getEconomy(){
         return economy;
     }
 
@@ -45,13 +48,13 @@ public class TradeAPI implements QPluginAPI {
         return transactionManager;
     }
 
-    private TradeAPI(){
+    private ClaimBlocksAPI(){
 
     }
 
-    private TradeAPI(QGPTrade plugin, int bStatsPluginId){
+    private ClaimBlocksAPI(QGPClaimBlocks plugin, int bStatsPluginId){
         pluginInstance = plugin;
-        Messages.init("<white>[<red>qGP<white>-<aqua>Trade<white>]", "<red>qGP<white>-<aqua>Trade <bold><gray>>></bold>");
+        Messages.init(CONSOLE_PREFIX, CHAT_PREFIX);
         QLogger.init(pluginInstance.getComponentLogger());
         if(bStatsPluginId > 0){
             setupMetrics(bStatsPluginId);
@@ -63,12 +66,12 @@ public class TradeAPI implements QPluginAPI {
         registerCommands();
     }
 
-    protected static void enable(QGPTrade plugin, int bStatsPluginId){
+    protected static void enable(QGPClaimBlocks plugin, int bStatsPluginId){
         if(apiInstance != null){
             QLogger.error(GenericMessages.ERROR_PLUGIN_ENABLE);
             return;
         }
-        apiInstance = new TradeAPI(plugin, bStatsPluginId);
+        apiInstance = new ClaimBlocksAPI(plugin, bStatsPluginId);
     }
 
     protected static void disable(){
@@ -133,7 +136,7 @@ public class TradeAPI implements QPluginAPI {
     }
 
     public void setupEconomy(){
-        economy = new VaultEco();
+        economy = new VaultUtil();
     }
 
     public void setupTransactionManager(){

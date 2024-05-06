@@ -1,14 +1,12 @@
-package gg.quartzdev.qgptrade.transaction;
+package gg.quartzdev.qgpclaimblocks.transaction;
 
-import gg.quartzdev.lib.qlibpaper.Sender;
-import gg.quartzdev.qgptrade.TradeAPI;
-import gg.quartzdev.qgptrade.storage.YMLtransactions;
+import gg.quartzdev.qgpclaimblocks.ClaimBlocksAPI;
+import gg.quartzdev.qgpclaimblocks.storage.YMLtransactions;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -20,7 +18,7 @@ public class TransactionManager {
 
     public TransactionManager(){
         transactions = new HashMap<>();
-        transactionStorage = new YMLtransactions(TradeAPI.getPlugin(), "transactions.yml");
+        transactionStorage = new YMLtransactions(ClaimBlocksAPI.getPlugin(), "transactions.yml");
         loadTransactions();
     }
 

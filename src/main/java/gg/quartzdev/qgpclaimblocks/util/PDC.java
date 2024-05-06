@@ -1,7 +1,7 @@
-package gg.quartzdev.qgptrade.util;
+package gg.quartzdev.qgpclaimblocks.util;
 
 import gg.quartzdev.morepersistentdatatypes.DataType;
-import gg.quartzdev.qgptrade.TradeAPI;
+import gg.quartzdev.qgpclaimblocks.ClaimBlocksAPI;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
@@ -14,8 +14,8 @@ import java.util.UUID;
 
 public class PDC {
 
-    private static NamespacedKey markKey = new NamespacedKey(TradeAPI.getPlugin(), "mark");
-    private static NamespacedKey transactionKey = new NamespacedKey(TradeAPI.getPlugin(), "transaction-id");
+    private static NamespacedKey markKey = new NamespacedKey(ClaimBlocksAPI.getPlugin(), "mark");
+    private static NamespacedKey transactionKey = new NamespacedKey(ClaimBlocksAPI.getPlugin(), "transaction-id");
 
     /**
      * Marks an {@link ItemMeta}. Note: You will need to update the {@link ItemStack} for the mark to work

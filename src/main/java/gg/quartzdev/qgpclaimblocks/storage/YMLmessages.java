@@ -1,4 +1,4 @@
-package gg.quartzdev.qgptrade.storage;
+package gg.quartzdev.qgpclaimblocks.storage;
 
 import gg.quartzdev.lib.qlibpaper.storage.QConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;

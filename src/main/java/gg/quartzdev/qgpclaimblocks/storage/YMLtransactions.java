@@ -1,16 +1,13 @@
-package gg.quartzdev.qgptrade.storage;
+package gg.quartzdev.qgpclaimblocks.storage;
 
-import gg.quartzdev.lib.qlibpaper.Sender;
 import gg.quartzdev.lib.qlibpaper.storage.QConfiguration;
-import gg.quartzdev.qgptrade.transaction.Transaction;
+import gg.quartzdev.qgpclaimblocks.transaction.Transaction;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 
 public class YMLtransactions extends QConfiguration {
 

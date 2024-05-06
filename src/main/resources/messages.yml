@@ -1,3 +1,13 @@
+############################################################
+# +------------------------------------------------------+ #
+# |                  qGP-Trade Messages                  | #
+# |   Source:   https://github.com/QarthO/qGP-Trade      | #
+# |   Download: https://modrinth.com/plugin/qGP-Trade/   | #
+# |   Donate:   https://quartzdev.gg/donate              | #
+# |   Discord:  https://quartzdev.gg/discord             | #
+# +------------------------------------------------------+ #
+############################################################
+
 CONSOLE_PREFIX: "<gray>[<red>q<aqua>Plugin<gray>]"
 CHAT_PREFIX: "<red>q<aqua>Plugin <bold><gray>></bold>"
 

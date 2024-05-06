@@ -1,4 +1,4 @@
-package gg.quartzdev.qgptrade.util;
+package gg.quartzdev.qgpclaimblocks.util;
 
 public class Args {
 

@@ -1,6 +1,6 @@
-name: qGP-Trade
+name: qGP-ClaimBlocks
 version: '${project.version}'
-main: gg.quartzdev.qgptrade.QGPTrade
+main: gg.quartzdev.qgpclaimblocks.QGPClaimBlocks
 api-version: "1.19"
 dependencies:
   server:

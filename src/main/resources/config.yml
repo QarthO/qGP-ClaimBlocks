@@ -64,6 +64,11 @@ send:
 # Requires Vault: https://www.spigotmc.org/resources/vault.34315/
 economy:
   enabled: true
+  # Flat amount that gets charged to the player's account
+  fee:
+    withdraw: 0
+    transfer: 0
+  # Percentage (based on amount of claim blocks) amount that gets charged
   tax:
-    withdraw-percentage: 5
-    send-percentage: -1
+    withdraw: 5
+    transfer: -1

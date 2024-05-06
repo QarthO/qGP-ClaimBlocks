@@ -1,11 +1,11 @@
-package gg.quartzdev.qgptrade.listeners;
+package gg.quartzdev.qgpclaimblocks.listeners;
 
 import gg.quartzdev.lib.qlibpaper.Sender;
 import gg.quartzdev.lib.qlibpaper.lang.QMessage;
-import gg.quartzdev.qgptrade.TradeAPI;
-import gg.quartzdev.qgptrade.transaction.Transaction;
-import gg.quartzdev.qgptrade.util.Messages;
-import gg.quartzdev.qgptrade.util.PDC;
+import gg.quartzdev.qgpclaimblocks.ClaimBlocksAPI;
+import gg.quartzdev.qgpclaimblocks.transaction.Transaction;
+import gg.quartzdev.qgpclaimblocks.util.Messages;
+import gg.quartzdev.qgpclaimblocks.util.PDC;
 import me.ryanhamshire.GriefPrevention.GriefPrevention;
 import me.ryanhamshire.GriefPrevention.PlayerData;
 import org.bukkit.entity.Player;
@@ -53,11 +53,11 @@ public class SlipListener implements Listener {
                 .parse("blocks_remaining", String.valueOf(playerData.getRemainingClaimBlocks()));
         Sender.message(player, successMessage);
 
-        TradeAPI.getTransactionManager().closeTransaction(transaction);
+        ClaimBlocksAPI.getTransactionManager().closeTransaction(transaction);
     }
 
     private @Nullable Transaction getTransactionFromSlip(ItemStack heldItem){
         UUID transactionId = PDC.getTransactionId(heldItem);
-        return transactionId != null ? TradeAPI.getTransactionManager().getTransaction(transactionId) : null;
+        return transactionId != null ? ClaimBlocksAPI.getTransactionManager().getTransaction(transactionId) : null;
     }
 }
