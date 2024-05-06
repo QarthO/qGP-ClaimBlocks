@@ -9,7 +9,7 @@ public final class QGPClaimBlocks extends JavaPlugin {
     @Override
     public void onEnable() {
         ConfigurationSerialization.registerClass(Transaction.class);
-        ClaimBlocksAPI.enable(this, -1);
+        ClaimBlocksAPI.enable(this, 21819);
     }
 
     @Override

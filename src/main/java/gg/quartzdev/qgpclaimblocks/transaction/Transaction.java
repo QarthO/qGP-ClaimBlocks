@@ -2,10 +2,12 @@ package gg.quartzdev.qgpclaimblocks.transaction;
 
 import gg.quartzdev.lib.qlibpaper.QLogger;
 import gg.quartzdev.qgpclaimblocks.ClaimBlocksAPI;
+import gg.quartzdev.qgpclaimblocks.storage.ConfigPath;
 import gg.quartzdev.qgpclaimblocks.util.PDC;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import org.bukkit.Material;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.configuration.serialization.SerializableAs;
 import org.bukkit.entity.Player;
@@ -47,7 +49,7 @@ public class Transaction implements ConfigurationSerializable {
     }
 
     public void createSlip(){
-        slip = new ItemStack(ClaimBlocksAPI.getConfig().getSlipMaterial());
+        slip = new ItemStack(ClaimBlocksAPI.getConfig().get(ConfigPath.SLIP_MATERIAL, Material.PAPER));
         ItemMeta itemMeta = slip.getItemMeta();
         PDC.setTransactionId(itemMeta, transactionId);
         updateNameLore(itemMeta);
@@ -72,12 +74,12 @@ public class Transaction implements ConfigurationSerializable {
 
     public void updateNameLore(ItemMeta itemMeta){
         Component name = MiniMessage.miniMessage().deserialize(
-                ClaimBlocksAPI.getConfig().getSlipName()
+                ClaimBlocksAPI.getConfig().get(ConfigPath.SLIP_NAME, "Deposit Slip")
                         .replaceAll("<blocks>", String.valueOf(claimBlocks))
         ).decoration(TextDecoration.ITALIC, false);
         itemMeta.displayName(name);
         List<Component> lore = new ArrayList<>();
-        for(String loreLine : ClaimBlocksAPI.getConfig().getSlipLore()){
+        for(String loreLine : ClaimBlocksAPI.getConfig().get(ConfigPath.SLIP_LORE, new String[]{})){
             loreLine = loreLine
                     .replaceAll("<id>", String.valueOf(transactionId))
                     .replaceAll("<withdrawer>", withdrawerName)
