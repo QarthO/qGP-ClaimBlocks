@@ -9,7 +9,7 @@
     <version>1.0-BETA</version>
     <packaging>jar</packaging>
 
-    <name>qGP-Trade</name>
+    <name>qGP-ClaimBlocks</name>
 
     <properties>
         <java.version>17</java.version>

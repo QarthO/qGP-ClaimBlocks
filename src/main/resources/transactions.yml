@@ -1,13 +1,13 @@
-############################################################
-# +------------------------------------------------------+ #
-# |                qGP-Trade Transactions                | #
-# |   Source:   https://github.com/QarthO/qGP-Trade      | #
-# |   Download: https://modrinth.com/plugin/qGP-Trade/   | #
-# |   Donate:   https://quartzdev.gg/donate              | #
-# |   Discord:  https://quartzdev.gg/discord             | #
-# +------------------------------------------------------+ #
-############################################################
+##################################################################
+# +------------------------------------------------------------+ #
+# |                qGP-ClaimBlocks Transactions                | #
+# |   Source:   https://github.com/QarthO/qGP-ClaimBlocks/     | #
+# |   Download: https://modrinth.com/plugin/qGP-ClaimBlocks/   | #
+# |   Donate:   https://quartzdev.gg/donate                    | #
+# |   Discord:  https://quartzdev.gg/discord                   | #
+# +------------------------------------------------------------+ #
+##################################################################
 
-# Last loaded with qGP-Trade v1.0-BETA
+# Last loaded with qGP-ClaimBlocks v1.0-BETA
 schema-version: 1.0
 transactions: {}
