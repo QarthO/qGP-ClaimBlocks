@@ -50,3 +50,4 @@ This plugin uses [bStats][bstats-url]. You can opt-out in the bStats config
 [bstats-url]: https://bstats.org/
 [bstats-plugin-svg]: https://bstats.org/signatures/bukkit/qGP-ClaimBlocks.svg
 [bstats-plugin-url]: https://bstats.org/plugin/bukkit/qGP-ClaimBlocks/
+[gp-url]: https://modrinth.com/plugin/GriefPrevention
