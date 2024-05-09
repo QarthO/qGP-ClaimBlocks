@@ -1,6 +1,6 @@
 package gg.quartzdev.qgpclaimblocks.datastore;
 
-import gg.quartzdev.lib.qlibpaper.Sender;
+import gg.quartzdev.lib.qlibpaper.QLogger;
 import gg.quartzdev.lib.qlibpaper.lang.QMessage;
 import gg.quartzdev.lib.qlibpaper.storage.QConfiguration;
 import gg.quartzdev.qgpclaimblocks.util.Messages;
@@ -14,15 +14,14 @@ public class YMLmessages extends QConfiguration {
 
     @Override
     public void loadAllData() {
-        Sender.broadcast("Loading All Messages");
+        QLogger.info("<prefix> Loading messages");
         for(String key : yamlConfiguration.getKeys(false)){
-            try{
-                if(key.equalsIgnoreCase("schema-version")) continue;
-                QMessage message = Messages.getCustomMessage(key);
-                Sender.broadcast(message.get());
-                message.set(yamlConfiguration.getString(key));
-                Sender.broadcast(message.get());
-            } catch (NoSuchFieldException | IllegalAccessException  | ClassCastException ignored){}
+            QMessage message = Messages.getCustomMessage(key);
+            if(message == null){
+                QLogger.error("Message with key <yellow>" + key + "</yellow> does not exist");
+                continue;
+            }
+            message.set(yamlConfiguration.getString(key));
         }
     }
 

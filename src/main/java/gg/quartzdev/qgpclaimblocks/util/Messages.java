@@ -1,9 +1,11 @@
 package gg.quartzdev.qgpclaimblocks.util;
 
+import gg.quartzdev.lib.qlibpaper.QLogger;
 import gg.quartzdev.lib.qlibpaper.lang.GenericMessages;
 import gg.quartzdev.lib.qlibpaper.lang.QMessage;
 import gg.quartzdev.qgpclaimblocks.ClaimBlocksAPI;
 import gg.quartzdev.qgpclaimblocks.datastore.YMLmessages;
+import org.jetbrains.annotations.Nullable;
 
 public class Messages extends GenericMessages {
     private static Messages INSTANCE;
@@ -47,6 +49,9 @@ public class Messages extends GenericMessages {
         messagesFile = new YMLmessages(ClaimBlocksAPI.getPlugin(), "messages.yml");
     }
 
+    /**
+     * Reloads the messages file
+     */
     public void reload(){
         messagesFile.reload();
     }
@@ -54,13 +59,14 @@ public class Messages extends GenericMessages {
     /**
      * uses reflection to get the {@link QMessage} object from the class
      * @param key the name of the field to get
-     * @return the {@link QMessage}
-     * @throws NoSuchFieldException if there isn't a field with the name of the key
-     * @throws IllegalAccessException if the field is not accessible
-     * @throws ClassCastException if the field is not a {@link QMessage}
+     * @return the {@link QMessage} or {@link null} if it doesn't exist
      */
-    public static QMessage getCustomMessage(String key) throws NoSuchFieldException, IllegalAccessException, ClassCastException {
-        return (QMessage) Messages.class.getField(key).get(QMessage.class);
+    public static @Nullable QMessage getCustomMessage(String key) {
+        try {
+            return (QMessage) Messages.class.getField(key).get(QMessage.class);
+        } catch(NoSuchFieldException | IllegalAccessException | ClassCastException e) {
+            return null;
+        }
     }
 
 }

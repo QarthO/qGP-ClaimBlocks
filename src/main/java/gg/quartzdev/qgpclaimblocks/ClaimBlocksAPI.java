@@ -5,6 +5,7 @@ import gg.quartzdev.lib.qlibpaper.QPluginAPI;
 import gg.quartzdev.lib.qlibpaper.commands.QCommandMap;
 import gg.quartzdev.lib.qlibpaper.lang.GenericMessages;
 import gg.quartzdev.lib.qlibpaper.QLogger;
+import gg.quartzdev.metrics.bukkit.Metrics;
 import gg.quartzdev.qgpclaimblocks.commands.*;
 import gg.quartzdev.qgpclaimblocks.listeners.ExploitListener;
 import gg.quartzdev.qgpclaimblocks.listeners.SlipListener;
@@ -12,15 +13,14 @@ import gg.quartzdev.qgpclaimblocks.datastore.YMLconfig;
 import gg.quartzdev.qgpclaimblocks.transaction.TransactionManager;
 import gg.quartzdev.qgpclaimblocks.util.Messages;
 import gg.quartzdev.qgpclaimblocks.util.VaultUtil;
-import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 
 import java.util.List;
 
 public class ClaimBlocksAPI implements QPluginAPI {
+
     private final String CONSOLE_PREFIX = "<white>[<red>qGP<white>-<aqua>Trade<white>]";
     private final String CHAT_PREFIX = "<red>qGP<white>-<aqua>Trade <bold><gray>>></bold>";
-
     private static ClaimBlocksAPI apiInstance;
     private static QGPClaimBlocks pluginInstance;
     private static Messages messages;
@@ -47,7 +47,6 @@ public class ClaimBlocksAPI implements QPluginAPI {
     }
 
     private ClaimBlocksAPI(){
-
     }
 
     private ClaimBlocksAPI(QGPClaimBlocks plugin, int bStatsPluginId){
@@ -82,6 +81,7 @@ public class ClaimBlocksAPI implements QPluginAPI {
         registerCommands();
     }
 
+    @SuppressWarnings("SameParameterValue")
     protected static void enable(QGPClaimBlocks plugin, int bStatsPluginId){
         if(apiInstance != null){
             QLogger.error(GenericMessages.ERROR_PLUGIN_ENABLE);
@@ -91,12 +91,6 @@ public class ClaimBlocksAPI implements QPluginAPI {
     }
 
     protected static void disable(){
-
-//        Warns about reloading/plugin managers
-        final boolean isStopping = Bukkit.getServer().isStopping();
-        if(!isStopping){
-            QLogger.warning(GenericMessages.PLUGIN_UNSAFE_DISABLE);
-        }
 
 //        Logs plugin is being disabled
         QLogger.info(GenericMessages.PLUGIN_DISABLE);
@@ -130,7 +124,7 @@ public class ClaimBlocksAPI implements QPluginAPI {
     }
 
     public void setupMetrics(int pluginId){
-//        metrics = new Metrics(pluginInstance, pluginId);
+        metrics = new Metrics(pluginInstance, pluginId);
     }
 
     public void registerCommands(){
@@ -152,7 +146,6 @@ public class ClaimBlocksAPI implements QPluginAPI {
         config = new YMLconfig(pluginInstance, "config.yml");
     }
     public void setupMessages(){
-        System.out.println(">>>>>>>>>>> setting up messages");
         messages = new Messages(CONSOLE_PREFIX, CHAT_PREFIX);
     }
     public static void loadCustomMessages(){
