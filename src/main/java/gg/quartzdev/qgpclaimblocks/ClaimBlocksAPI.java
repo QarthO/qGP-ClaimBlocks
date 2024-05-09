@@ -19,8 +19,8 @@ import java.util.List;
 
 public class ClaimBlocksAPI implements QPluginAPI {
 
-    private final String CONSOLE_PREFIX = "<white>[<red>qGP<white>-<aqua>Trade<white>]";
-    private final String CHAT_PREFIX = "<red>qGP<white>-<aqua>Trade <bold><gray>>></bold>";
+    private final String CONSOLE_PREFIX = "<white>[<red>qGP<white>-<aqua>ClaimBlocks<white>]";
+    private final String CHAT_PREFIX = "<red>qGP<white>-<aqua>ClaimBlocks <bold><gray>>></bold>";
     private static ClaimBlocksAPI apiInstance;
     private static QGPClaimBlocks pluginInstance;
     private static Messages messages;
