@@ -8,7 +8,11 @@ public final class QGPClaimBlocks extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
+//        Lets Transaction class be serializable for easing saving transactions to transactions.yml
         ConfigurationSerialization.registerClass(Transaction.class);
+
+//        Enables the plugin
         ClaimBlocksAPI.enable(this, 21819);
     }
 

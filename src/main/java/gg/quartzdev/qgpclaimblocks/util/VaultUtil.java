@@ -2,8 +2,8 @@ package gg.quartzdev.qgpclaimblocks.util;
 
 import gg.quartzdev.lib.qlibpaper.QLogger;
 import gg.quartzdev.qgpclaimblocks.ClaimBlocksAPI;
-import gg.quartzdev.qgpclaimblocks.storage.Config;
-import gg.quartzdev.qgpclaimblocks.storage.ConfigPath;
+import gg.quartzdev.qgpclaimblocks.datastore.YMLconfig;
+import gg.quartzdev.qgpclaimblocks.datastore.ConfigPath;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -12,7 +12,7 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 public class VaultUtil {
 
     Economy eco;
-    Config config;
+    YMLconfig config;
 
     public VaultUtil(){
         setupEconomy();

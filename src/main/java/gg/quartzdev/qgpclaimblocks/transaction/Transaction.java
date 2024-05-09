@@ -2,7 +2,7 @@ package gg.quartzdev.qgpclaimblocks.transaction;
 
 import gg.quartzdev.lib.qlibpaper.QLogger;
 import gg.quartzdev.qgpclaimblocks.ClaimBlocksAPI;
-import gg.quartzdev.qgpclaimblocks.storage.ConfigPath;
+import gg.quartzdev.qgpclaimblocks.datastore.ConfigPath;
 import gg.quartzdev.qgpclaimblocks.util.PDC;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;

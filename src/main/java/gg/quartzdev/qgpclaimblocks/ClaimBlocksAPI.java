@@ -5,13 +5,10 @@ import gg.quartzdev.lib.qlibpaper.QPluginAPI;
 import gg.quartzdev.lib.qlibpaper.commands.QCommandMap;
 import gg.quartzdev.lib.qlibpaper.lang.GenericMessages;
 import gg.quartzdev.lib.qlibpaper.QLogger;
-import gg.quartzdev.qgpclaimblocks.commands.CMD;
-import gg.quartzdev.qgpclaimblocks.commands.CMDreload;
-import gg.quartzdev.qgpclaimblocks.commands.CMDtransaction;
-import gg.quartzdev.qgpclaimblocks.commands.CMDwithdraw;
+import gg.quartzdev.qgpclaimblocks.commands.*;
 import gg.quartzdev.qgpclaimblocks.listeners.ExploitListener;
 import gg.quartzdev.qgpclaimblocks.listeners.SlipListener;
-import gg.quartzdev.qgpclaimblocks.storage.Config;
+import gg.quartzdev.qgpclaimblocks.datastore.YMLconfig;
 import gg.quartzdev.qgpclaimblocks.transaction.TransactionManager;
 import gg.quartzdev.qgpclaimblocks.util.Messages;
 import gg.quartzdev.qgpclaimblocks.util.VaultUtil;
@@ -26,9 +23,10 @@ public class ClaimBlocksAPI implements QPluginAPI {
 
     private static ClaimBlocksAPI apiInstance;
     private static QGPClaimBlocks pluginInstance;
+    private static Messages messages;
     private static QCommandMap commandMap;
     private static Metrics metrics;
-    private static Config config;
+    private static YMLconfig config;
     private static VaultUtil economy;
     private static TransactionManager transactionManager;
 
@@ -36,7 +34,7 @@ public class ClaimBlocksAPI implements QPluginAPI {
         return pluginInstance;
     }
 
-    public static Config getConfig(){
+    public static YMLconfig getConfig(){
         return config;
     }
 
@@ -53,16 +51,34 @@ public class ClaimBlocksAPI implements QPluginAPI {
     }
 
     private ClaimBlocksAPI(QGPClaimBlocks plugin, int bStatsPluginId){
+
+//        Used to get plugin instance in other classes
         pluginInstance = plugin;
-        Messages.init(CONSOLE_PREFIX, CHAT_PREFIX);
+
+//        Initializes custom logger
         QLogger.init(pluginInstance.getComponentLogger());
+
+//        Loads custom messages defined in messages.yml
+        setupMessages();
+
+//        Sets up bStats metrics
         if(bStatsPluginId > 0){
             setupMetrics(bStatsPluginId);
         }
+
+//        Sets up config.yml
         setupConfig();
+
+//        Initializes bukkit event listeners
         registerListeners();
+
+//        Sets up vault economy hook
         setupEconomy();
+
+//        Sets up transaction manager
         setupTransactionManager();
+
+//        Registers all commands
         registerCommands();
     }
 
@@ -114,15 +130,16 @@ public class ClaimBlocksAPI implements QPluginAPI {
     }
 
     public void setupMetrics(int pluginId){
-
+//        metrics = new Metrics(pluginInstance, pluginId);
     }
 
     public void registerCommands(){
         commandMap = new QCommandMap();
-        String label = "qgptrust";
+        String label = "qclaimblocks";
         commandMap.create(label, new CMD("", QPerm.GROUP_PLAYER), List.of("claimblocks", "cb"));
         commandMap.addSubCommand(label, new CMDreload("reload", QPerm.GROUP_ADMIN));
         commandMap.addSubCommand(label, new CMDwithdraw("withdraw", QPerm.GROUP_PLAYER));
+        commandMap.addSubCommand(label, new CMDtransfer("transfer", QPerm.GROUP_PLAYER));
         commandMap.addSubCommand(label, new CMDtransaction("transaction", QPerm.GROUP_ADMIN));
     }
 
@@ -132,7 +149,14 @@ public class ClaimBlocksAPI implements QPluginAPI {
     }
 
     public void setupConfig(){
-        config = new Config(pluginInstance, "config.yml");
+        config = new YMLconfig(pluginInstance, "config.yml");
+    }
+    public void setupMessages(){
+        System.out.println(">>>>>>>>>>> setting up messages");
+        messages = new Messages(CONSOLE_PREFIX, CHAT_PREFIX);
+    }
+    public static void loadCustomMessages(){
+        messages.reload();
     }
 
     public void setupEconomy(){

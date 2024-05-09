@@ -1,7 +1,7 @@
 package gg.quartzdev.qgpclaimblocks.transaction;
 
 import gg.quartzdev.qgpclaimblocks.ClaimBlocksAPI;
-import gg.quartzdev.qgpclaimblocks.storage.YMLtransactions;
+import gg.quartzdev.qgpclaimblocks.datastore.YMLtransactions;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

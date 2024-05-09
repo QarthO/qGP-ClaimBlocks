@@ -4,8 +4,8 @@ import gg.quartzdev.lib.qlibpaper.Sender;
 import gg.quartzdev.lib.qlibpaper.commands.QCommand;
 import gg.quartzdev.lib.qlibpaper.lang.QMessage;
 import gg.quartzdev.qgpclaimblocks.ClaimBlocksAPI;
-import gg.quartzdev.qgpclaimblocks.storage.Config;
-import gg.quartzdev.qgpclaimblocks.storage.ConfigPath;
+import gg.quartzdev.qgpclaimblocks.datastore.YMLconfig;
+import gg.quartzdev.qgpclaimblocks.datastore.ConfigPath;
 import gg.quartzdev.qgpclaimblocks.transaction.Transaction;
 import gg.quartzdev.qgpclaimblocks.util.Args;
 import gg.quartzdev.qgpclaimblocks.util.Messages;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CMDwithdraw extends QCommand {
-    Config config;
+    YMLconfig config;
 
     public CMDwithdraw(String commandName, String permissionGroup) {
         super(commandName, permissionGroup);

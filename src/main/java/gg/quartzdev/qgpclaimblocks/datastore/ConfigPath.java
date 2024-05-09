@@ -1,4 +1,4 @@
-package gg.quartzdev.qgpclaimblocks.storage;
+package gg.quartzdev.qgpclaimblocks.datastore;
 
 public enum ConfigPath {
     MIN_WITHDRAW("withdraw.min-claim-blocks"),

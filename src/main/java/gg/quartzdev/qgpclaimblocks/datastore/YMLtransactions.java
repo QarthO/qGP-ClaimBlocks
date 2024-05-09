@@ -1,4 +1,4 @@
-package gg.quartzdev.qgpclaimblocks.storage;
+package gg.quartzdev.qgpclaimblocks.datastore;
 
 import gg.quartzdev.lib.qlibpaper.storage.QConfiguration;
 import gg.quartzdev.qgpclaimblocks.transaction.Transaction;
@@ -12,7 +12,7 @@ import java.util.List;
 public class YMLtransactions extends QConfiguration {
 
     public YMLtransactions(JavaPlugin plugin, String fileName) {
-        super(plugin, fileName);
+        super(plugin, fileName, true);
     }
 
     @Override

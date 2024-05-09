@@ -1,4 +1,4 @@
-package gg.quartzdev.qgpclaimblocks.storage;
+package gg.quartzdev.qgpclaimblocks.datastore;
 
 import gg.quartzdev.lib.qlibpaper.storage.ConfigOption;
 import gg.quartzdev.lib.qlibpaper.storage.QConfiguration;
@@ -8,21 +8,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.List;
 import java.util.function.Supplier;
 
-public class Config extends QConfiguration {
+public class YMLconfig extends QConfiguration {
 
-    public Config(JavaPlugin plugin, String fileName) {
-        super(plugin, fileName);
-//        withdrawMin = 1;
-//        withdrawMax = Integer.MAX_VALUE;
-//        slipName = "<bold><yellow><blocks_withdraw> claim blocks";
-//        slipLore = List.of(
-//                "<blue>Transaction ID: <yellow><id>",
-//                "<blue>Withdrawer: <yellow><player>",
-//                "<blue>Claim Blocks: <yellow><blocks>");
-//        slipMaterial = Material.PAPER;
+    public YMLconfig(JavaPlugin plugin, String fileName) {
+        super(plugin, fileName, true);
         initializeAll();
         loadAllData();
-//        options.values().forEach(ConfigOption::load);
     }
 
     @Override
@@ -50,9 +41,14 @@ public class Config extends QConfiguration {
         configOptions.put(path.get(), new ConfigOption<>(path.get(), yamlConfiguration, loader));
     }
 
+    @SuppressWarnings("unchecked")
     public <T> T get(ConfigPath key, T defaultValue){
-        ConfigOption<T> option = (ConfigOption<T>) configOptions.get(key.get());
-        return option == null ? defaultValue : (T) option.get();
+        try{
+            ConfigOption<T> option = (ConfigOption<T>) configOptions.get(key.get());
+            return option == null ? defaultValue : option.get();
+        } catch (ClassCastException ignored){
+            return defaultValue;
+        }
     }
 
 }

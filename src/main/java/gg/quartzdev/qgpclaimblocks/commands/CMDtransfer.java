@@ -3,8 +3,8 @@ package gg.quartzdev.qgpclaimblocks.commands;
 import gg.quartzdev.lib.qlibpaper.commands.QCommand;
 import org.bukkit.command.CommandSender;
 
-public class CMDtrade extends QCommand {
-    public CMDtrade(String commandName, String permissionGroup) {
+public class CMDtransfer extends QCommand {
+    public CMDtransfer(String commandName, String permissionGroup) {
         super(commandName, permissionGroup);
     }
 
