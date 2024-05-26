@@ -1,5 +1,6 @@
 package gg.quartzdev.qgpclaimblocks;
 
+import gg.quartzdev.lib.qlibpaper.UpdateChecker;
 import gg.quartzdev.qgpclaimblocks.transaction.Transaction;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.java.JavaPlugin;

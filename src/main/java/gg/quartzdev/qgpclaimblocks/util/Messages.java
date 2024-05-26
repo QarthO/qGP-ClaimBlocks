@@ -38,9 +38,9 @@ public class Messages extends GenericMessages {
     public static QMessage VAULT_HOOKED = new QMessage(
             "<prefix> <green>Successfully hooked into <yellow>Vault's<green> Economy");
     public static QMessage ERROR_VAULT_HOOK = new QMessage(
-            "<prefix> <red>Error: Vault found, but unable to find an economy provider. Make sure you have an Economy plugin installed, (ie. EssentialsX, CoinsEngine, etc");
+            "<prefix> <red>Error: Vault found, but unable to find an economy provider. You need an Economy plugin installed, (ie. EssentialsX, CoinsEngine, etc");
     public static QMessage WARNING_VAULT_NOT_FOUND = new QMessage(
-            "<prefix> <yellow> Warning: Vault is required for the economy integration");
+            "<prefix> <yellow>Warning: Vault is required for the economy integration");
     public static QMessage ERROR_INSUFFICIENT_FUNDS = new QMessage(
             "<prefix> <red>Error: You don't have enough money to do that");
 

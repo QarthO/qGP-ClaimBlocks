@@ -18,7 +18,7 @@ public class YMLmessages extends QConfiguration {
         for(String key : yamlConfiguration.getKeys(false)){
             QMessage message = Messages.getCustomMessage(key);
             if(message == null){
-                QLogger.error(Messages.ERROR_UPDATE_MESSAGE.parse("message", key));
+                QLogger.error(Messages.ERROR_UPDATE_MESSAGE.parse("key", key));
                 continue;
             }
             message.set(yamlConfiguration.getString(key));

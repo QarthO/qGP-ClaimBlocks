@@ -2,11 +2,13 @@ package gg.quartzdev.qgpclaimblocks;
 
 import gg.quartzdev.lib.qlibpaper.QPerm;
 import gg.quartzdev.lib.qlibpaper.QPluginAPI;
+import gg.quartzdev.lib.qlibpaper.UpdateChecker;
 import gg.quartzdev.lib.qlibpaper.commands.QCommandMap;
 import gg.quartzdev.lib.qlibpaper.lang.GenericMessages;
 import gg.quartzdev.lib.qlibpaper.QLogger;
 import gg.quartzdev.metrics.bukkit.Metrics;
 import gg.quartzdev.qgpclaimblocks.commands.*;
+import gg.quartzdev.qgpclaimblocks.datastore.ConfigPath;
 import gg.quartzdev.qgpclaimblocks.listeners.ExploitListener;
 import gg.quartzdev.qgpclaimblocks.listeners.SlipListener;
 import gg.quartzdev.qgpclaimblocks.datastore.YMLconfig;
@@ -14,7 +16,6 @@ import gg.quartzdev.qgpclaimblocks.transaction.TransactionManager;
 import gg.quartzdev.qgpclaimblocks.util.Messages;
 import gg.quartzdev.qgpclaimblocks.util.VaultUtil;
 import org.bukkit.Bukkit;
-
 import java.util.List;
 
 public class ClaimBlocksAPI implements QPluginAPI {
@@ -68,11 +69,19 @@ public class ClaimBlocksAPI implements QPluginAPI {
 //        Sets up config.yml
         setupConfig();
 
+//        Sets up vault hook
+        if(config.get(ConfigPath.ECO_ENABLED, false)){
+            setupEconomy();
+        }
+
+//        Checks for updates
+        if(config.get(ConfigPath.CHECK_UPDATES, true)){
+            UpdateChecker updateChecker = new UpdateChecker("qgp-claimblocks", "paper");
+            updateChecker.checkForUpdatesAsync(pluginInstance, ClaimBlocksAPI.getVersion(), null);
+        }
+
 //        Initializes bukkit event listeners
         registerListeners();
-
-//        Sets up vault economy hook
-        setupEconomy();
 
 //        Sets up transaction manager
         setupTransactionManager();
@@ -152,8 +161,9 @@ public class ClaimBlocksAPI implements QPluginAPI {
         messages.reload();
     }
 
-    public void setupEconomy(){
-        economy = new VaultUtil();
+    public static void setupEconomy(){
+        if(config.get(ConfigPath.ECO_ENABLED, false))
+            economy = new VaultUtil();
     }
 
     public void setupTransactionManager(){

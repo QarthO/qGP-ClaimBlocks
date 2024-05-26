@@ -6,7 +6,7 @@
 
     <groupId>gg.quartzdev</groupId>
     <artifactId>qGP-ClaimBlocks</artifactId>
-    <version>1.0-BETA</version>
+    <version>1.0.0-BETA</version>
     <packaging>jar</packaging>
 
     <name>qGP-ClaimBlocks</name>
@@ -59,7 +59,7 @@
                 <version>2.3.1</version>
                 <configuration>
                     <!--                    Mac-->
-                    <outputDirectory>/Users/derek/Minecraft/Server/1.20.6/plugins/update</outputDirectory>
+<!--                    <outputDirectory>/Users/derek/Minecraft/Server/1.20.6/plugins/update</outputDirectory>-->
                     <!--                    Windows-->
 <!--                    <outputDirectory>C:\Users\derek\Documents\Minecraft\Server\Pufferfish 1.20.4\plugins\update</outputDirectory>-->
                 </configuration>
@@ -98,7 +98,7 @@
         <dependency>
             <groupId>com.github.QarthO</groupId>
             <artifactId>qlib-paper</artifactId>
-            <version>e5292b1562</version>
+            <version>e0f3f8b5ea</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
