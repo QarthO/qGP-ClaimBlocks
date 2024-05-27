@@ -12,6 +12,7 @@ import gg.quartzdev.qgpclaimblocks.datastore.ConfigPath;
 import gg.quartzdev.qgpclaimblocks.listeners.ExploitListener;
 import gg.quartzdev.qgpclaimblocks.listeners.SlipListener;
 import gg.quartzdev.qgpclaimblocks.datastore.YMLconfig;
+import gg.quartzdev.qgpclaimblocks.listeners.UpdateCheckerListener;
 import gg.quartzdev.qgpclaimblocks.transaction.TransactionManager;
 import gg.quartzdev.qgpclaimblocks.util.Messages;
 import gg.quartzdev.qgpclaimblocks.util.VaultUtil;
@@ -72,12 +73,6 @@ public class ClaimBlocksAPI implements QPluginAPI {
 //        Sets up vault hook
         if(config.get(ConfigPath.ECO_ENABLED, false)){
             setupEconomy();
-        }
-
-//        Checks for updates
-        if(config.get(ConfigPath.CHECK_UPDATES, true)){
-            UpdateChecker updateChecker = new UpdateChecker("qgp-claimblocks", "paper");
-            updateChecker.checkForUpdatesAsync(pluginInstance, ClaimBlocksAPI.getVersion(), null);
         }
 
 //        Initializes bukkit event listeners
@@ -149,6 +144,9 @@ public class ClaimBlocksAPI implements QPluginAPI {
     public void registerListeners(){
         Bukkit.getPluginManager().registerEvents(new SlipListener(), pluginInstance);
         Bukkit.getPluginManager().registerEvents(new ExploitListener(), pluginInstance);
+        if(config.get(ConfigPath.CHECK_UPDATES, true)){
+            setupUpdater("qgp-claimblocks", "paper");
+        }
     }
 
     public void setupConfig(){
@@ -168,6 +166,10 @@ public class ClaimBlocksAPI implements QPluginAPI {
 
     public void setupTransactionManager(){
         transactionManager = new TransactionManager();
+    }
+
+    public void setupUpdater(String slug, String loader){
+        Bukkit.getPluginManager().registerEvents(new UpdateCheckerListener(slug, loader), pluginInstance);
     }
 
 }

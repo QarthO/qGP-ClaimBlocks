@@ -84,6 +84,8 @@ send:
 # Requires an Economy Provider that supports Vault (ie. EssentialsX, CoinsEngine, etc.)
 # Requires Vault: https://www.spigotmc.org/resources/vault.34315/
 economy:
+  # Note: A server restart is required to enable/disable the economy hook
+  # Fee and tax settings can be updated using '/claimblocks reload' or in-game editor
   enabled: true
   # Flat amount that gets charged to the player's account
   fee:
