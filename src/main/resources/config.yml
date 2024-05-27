@@ -12,6 +12,7 @@ schema-version: 1.0
 # Requires 'qgptrade.admin.updates' permission to be notified
 # OPs can deny this permission to not be notified upon logging in
 # Only checks when the server boots or someone with the permission logs in
+# Note: A server restart is required to change this setting
 # Default: true
 check-updates: true
 
