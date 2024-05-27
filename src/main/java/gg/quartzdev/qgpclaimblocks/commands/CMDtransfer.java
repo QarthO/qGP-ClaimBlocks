@@ -2,6 +2,7 @@ package gg.quartzdev.qgpclaimblocks.commands;
 
 import gg.quartzdev.lib.qlibpaper.QLogger;
 import gg.quartzdev.lib.qlibpaper.Sender;
+import gg.quartzdev.lib.qlibpaper.UpdateChecker;
 import gg.quartzdev.lib.qlibpaper.commands.QCommand;
 import gg.quartzdev.lib.qlibpaper.lang.GenericMessages;
 import gg.quartzdev.qgpclaimblocks.ClaimBlocksAPI;
