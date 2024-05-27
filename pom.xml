@@ -59,7 +59,7 @@
                 <version>2.3.1</version>
                 <configuration>
                     <!--                    Mac-->
-                    <outputDirectory>/Users/derek/Minecraft/Server/1.20.6/plugins/update</outputDirectory>
+<!--                    <outputDirectory>/Users/derek/Minecraft/Server/1.20.6/plugins/update</outputDirectory>-->
                     <!--                    Windows-->
 <!--                    <outputDirectory>C:\Users\derek\Documents\Minecraft\Server\Pufferfish 1.20.4\plugins\update</outputDirectory>-->
                 </configuration>
