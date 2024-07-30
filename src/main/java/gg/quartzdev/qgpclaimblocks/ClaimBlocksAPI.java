@@ -134,11 +134,11 @@ public class ClaimBlocksAPI implements QPluginAPI {
         commandMap = new QCommandMap();
         String label = "qclaimblocks";
         commandMap.create(label, new CMD("", QPerm.GROUP_PLAYER), List.of("claimblocks", "cb"));
-        commandMap.addSubCommand(label, new CMDreload("reload", QPerm.GROUP_ADMIN));
-        commandMap.addSubCommand(label, new CMDwithdraw("withdraw", QPerm.GROUP_PLAYER));
-        commandMap.addSubCommand(label, new CMDtransfer("transfer", QPerm.GROUP_PLAYER));
-        commandMap.addSubCommand(label, new CMDtransfer("send", QPerm.GROUP_PLAYER));
-        commandMap.addSubCommand(label, new CMDtransaction("transaction", QPerm.GROUP_ADMIN));
+        commandMap.addSubCommand(label, new CMDreload("reload", "q.gpclaimblocks.reload"));
+        commandMap.addSubCommand(label, new CMDwithdraw("withdraw", "q.gpclaimblocks.withdraw"));
+        commandMap.addSubCommand(label, new CMDtransfer("transfer", "q.gpclaimblocks.transfer"));
+        commandMap.addSubCommand(label, new CMDtransfer("send", "q.gpclaimblocks.transfer"));
+        commandMap.addSubCommand(label, new CMDtransaction("transaction", "q.gpclaimblocks.transaction"));
     }
 
     public void registerListeners(){
