@@ -13,17 +13,17 @@ public class Messages extends GenericMessages {
     public static QMessage ERROR_INVALID_NUMBER = new QMessage(
             "<prefix> <red>Error: <yellow><input> <red>is an invalid number");
     public static QMessage ERROR_NOT_ENOUGH_CLAIM_BLOCKS = new QMessage(
-            "<prefix> <red>Error: You only have <yellow><blocks> <red>available claim blocks");
+            "<prefix> <red>Error: You only have <yellow><blocks> <red>claim blocks");
     public static QMessage ERROR_LOAD_CLAIM_BLOCKS = new QMessage(
             "<prefix> <red>Error: Unable to load your claim blocks data from GriefPrevention");
     public static QMessage ERROR_PLAYER_NOT_FOUND = new QMessage(
             "<prefix> <red>Error: You can only transfer to online players"
     );
     public static QMessage TRANSFER_CLAIM_BLOCKS = new QMessage(
-            "<prefix> <blue>You sent <yellow><blocks_transfer> <blue>claim blocks to <yellow><player><newline><prefix> <blue>You now have <yellow><blocks_remaining> <blue>remaining claim blocks"
+            "<prefix> <blue>You sent <yellow><blocks_transfer> <blue>claim blocks to <yellow><player><newline><prefix> <blue>You now have <yellow><blocks_remaining> <blue>claim blocks"
     );
     public static QMessage RECEIVE_CLAIM_BLOCKS = new QMessage(
-            "<prefix> <blue>You got <yellow><blocks_receive> <blue>claim blocks from <yellow><player><newline><prefix> <blue>You now have <yellow><blocks_remaining> <blue> available claim blocks"
+            "<prefix> <blue>You got <yellow><blocks_receive> <blue>claim blocks from <yellow><player><newline><prefix> <blue>You now have <yellow><blocks_remaining> <blue>claim blocks"
     );
 
 //    TRANSFER CLAIMBLOCKS
@@ -33,6 +33,8 @@ public class Messages extends GenericMessages {
             "<prefix> <red>Error: You can't transfer that many claim blocks");
     public static QMessage ERROR_TRANSFER_INVALID_NUMBER_MIN = new QMessage(
             "<prefix> <red>Error: You must transfer at least <blocks> claim blocks");
+    public static QMessage ERROR_SELF_TRANSFER = new QMessage(
+            "<prefix> <red>Error: You can't send claim blocks to yourself");
 
 //    WITHDRAW CLAIMBLOCKS
     public static QMessage SYNTAX_WITHDRAW = new QMessage(

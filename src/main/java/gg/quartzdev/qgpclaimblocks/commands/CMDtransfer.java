@@ -46,20 +46,29 @@ public class CMDtransfer extends QCommand {
             return false;
         }
 
-//        validate players
+//        gets player from args
         final Player toPlayer = Bukkit.getPlayer(args[1]);
         if(toPlayer == null)
         {
             Sender.message(sender, Messages.ERROR_PLAYER_NOT_FOUND);
             return false;
         }
+
+//        make sure player isn't trying to send to themselves
+        if(toPlayer.getUniqueId().equals(fromPlayer.getUniqueId())){
+            Sender.message(sender, Messages.ERROR_SELF_TRANSFER);
+            return false;
+        }
+
+//        gets fromPlayer's gp data
         final PlayerData playerData = GriefPrevention.instance.dataStore.getPlayerData(fromPlayer.getUniqueId());
         if(playerData == null){
             Sender.message(sender, Messages.ERROR_LOAD_CLAIM_BLOCKS);
             return false;
         }
-        final int blocksToTransfer = Args.parseInt(args[2]);
 
+//        gets number of blocks to transfer
+        final int blocksToTransfer = Args.parseInt(args[2]);
 //        make sure input number is a valid number
         QMessage response = Args.validateNumber(
                 args[2],
@@ -70,6 +79,7 @@ public class CMDtransfer extends QCommand {
             Sender.message(sender, response);
             return false;
         }
+//        transfers blocks
         response = transfer(fromPlayer, toPlayer, blocksToTransfer);
         Sender.message(fromPlayer, response.get());
         return true;
