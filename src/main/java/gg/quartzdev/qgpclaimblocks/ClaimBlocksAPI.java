@@ -137,6 +137,7 @@ public class ClaimBlocksAPI implements QPluginAPI {
         commandMap.addSubCommand(label, new CMDreload("reload", QPerm.GROUP_ADMIN));
         commandMap.addSubCommand(label, new CMDwithdraw("withdraw", QPerm.GROUP_PLAYER));
         commandMap.addSubCommand(label, new CMDtransfer("transfer", QPerm.GROUP_PLAYER));
+        commandMap.addSubCommand(label, new CMDtransfer("send", QPerm.GROUP_PLAYER));
         commandMap.addSubCommand(label, new CMDtransaction("transaction", QPerm.GROUP_ADMIN));
     }
 
