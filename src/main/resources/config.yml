@@ -68,13 +68,13 @@ transfer:
   # Bypass with permission: 'q.gpcb.transfer.min.bypass'
   # Override with permission:'q.gpcb.transfer.min.<amount>'
   # Default: 100 || Range: 0 - 2147483647
-  min-claim-blocks: 100
+  min-claim-blocks: 1
 
   # The maxmimum amount of blocks a player can send
   # Bypass with permission: 'q.gpcb.transfer.max.bypass'
   # Override with permission:'q.gpcb.transfer.max.<amount>'
   # Default: -1 || Range: 1 - 2147483647 || Use '-1' to disable
-  max-claim-blocks: -1
+  max-claim-blocks: 2147483647
 
 ##################################################################
 # +------------------------------------------------------------+ #

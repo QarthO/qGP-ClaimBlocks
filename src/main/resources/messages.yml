@@ -13,46 +13,46 @@
 # Visualizer: https://webui.advntr.dev
 
 # What <prefix> tag is replaced with
-CHAT_PREFIX: "<aqua>ClaimBlocks <bold><gray>></bold>"
-
-# Player attempts to run a command they don't have permission for
-ERROR_NO_PERMISSION: "<prefix> <red>Error: You don't have permission to perform this"
-
-# Player attempts to run a command that's only available in the console
-ERROR_CONSOLE_ONLY_COMMAND: "<prefix> <red>This command can only be ran from the console"
-
-# If no sub-command is found
-CMD_NOT_FOUND: "<prefix> <red>Unknown command: <yellow><command>"
-
-# Player sends incorrect syntax for a command
-SYNTAX_WITHDRAW: "<prefix> <red>Syntax: /<label> withdraw <amount>"
-SYNTAX_TRANSFER: "<prefix> <red>Syntax: /<label> transfer <player> <amount>"
-SYNTAX_TRANSACTION: "<prefix> <red>Syntax: /<label> transaction <id>"
-
-# Error loading a player's claim blocks from GriefPrevention
-ERROR_LOAD_CLAIM_BLOCKS: "<prefix> <red>Error: Unable to load your claim blocks data from GriefPrevention"
-
-# Transfers claim blocks
-#TRANSFER_CLAIM_BLOCKS: "<prefix> <blue>You transferred <yellow><blocks_transfer> <blue>claim blocks to <yellow><player><newline><prefix> <blue>You now have <yellow><blocks_remaining> <blue>remaining"
-
-# Received a transfer of claim blocks from another player
-#RECEIVE_CLAIM_BLOCKS: "<prefix> <blue>You received <yellow><blocks_receive> <blue>claim blocks from <yellow><player><newline><prefix> <blue>You now have <yellow><blocks_remaining> <blue>remaining"
-
-# Withdraws claim blocks
-#WITHDRAW_CLAIM_BLOCKS: "<prefix> <blue>You withdrew <yellow><blocks_withdraw> <blue>claim blocks<newline><prefix> <blue>You now have <yellow><blocks_remaining> <blue>remaining"
-
-# Deposits claim blocks (right-clicking a deposit slip)
-DEPOSIT_CLAIM_BLOCKS: "<prefix> <blue>You deposited <yellow><blocks_deposit> <blue>claim blocks<newline><prefix> <blue>You now have <yellow><blocks_remaining> <blue>available claim blocks"
-
-
-# Player attempts to withdraw/transfer more claim blocks than they have
-ERROR_NOT_ENOUGH_CLAIM_BLOCKS: "<prefix> <red>Error: You only have <yellow><blocks> <red>claim blocks"
-
-# Player attempts to withdraw/transfer more claim blocks than is allowed
-#ERROR_MAX_CLAIM_BLOCKS: "<prefix> <red>Error: You can only withdraw a maximum of <yellow><max_blocks> <red>claim blocks"
-
-# Player attempts to withdraw/transfer less claim blocks than is allowed
-#ERROR_MIN_CLAIM_BLOCKS: "<prefix> <red>Error: You can only withdraw a maximum of <yellow><max_blocks> <red>claim blocks"
-
-# Player attempts to withdraw/transfer and doesn't have enough money to pay the transaction fee or tax
-ERROR_INSUFFICIENT_FUNDS: "<prefix> <red>Error: You don't have enough money to do that"
+#CHAT_PREFIX: "<aqua>ClaimBlocks <bold><gray>></bold>"
+#
+## Player attempts to run a command they don't have permission for
+#ERROR_NO_PERMISSION: "<prefix> <red>Error: You don't have permission to perform this"
+#
+## Player attempts to run a command that's only available in the console
+#ERROR_CONSOLE_ONLY_COMMAND: "<prefix> <red>This command can only be ran from the console"
+#
+## If no sub-command is found
+#CMD_NOT_FOUND: "<prefix> <red>Unknown command: <yellow><command>"
+#
+## Player sends incorrect syntax for a command
+#SYNTAX_WITHDRAW: "<prefix> <red>Syntax: /<label> withdraw <amount>"
+#SYNTAX_TRANSFER: "<prefix> <red>Syntax: /<label> transfer <player> <amount>"
+#SYNTAX_TRANSACTION: "<prefix> <red>Syntax: /<label> transaction <id>"
+#
+## Error loading a player's claim blocks from GriefPrevention
+#ERROR_LOAD_CLAIM_BLOCKS: "<prefix> <red>Error: Unable to load your claim blocks data from GriefPrevention"
+#
+## Transfers claim blocks
+##TRANSFER_CLAIM_BLOCKS: "<prefix> <blue>You transferred <yellow><blocks_transfer> <blue>claim blocks to <yellow><player><newline><prefix> <blue>You now have <yellow><blocks_remaining> <blue>remaining"
+#
+## Received a transfer of claim blocks from another player
+##RECEIVE_CLAIM_BLOCKS: "<prefix> <blue>You received <yellow><blocks_receive> <blue>claim blocks from <yellow><player><newline><prefix> <blue>You now have <yellow><blocks_remaining> <blue>remaining"
+#
+## Withdraws claim blocks
+##WITHDRAW_CLAIM_BLOCKS: "<prefix> <blue>You withdrew <yellow><blocks_withdraw> <blue>claim blocks<newline><prefix> <blue>You now have <yellow><blocks_remaining> <blue>remaining"
+#
+## Deposits claim blocks (right-clicking a deposit slip)
+#DEPOSIT_CLAIM_BLOCKS: "<prefix> <blue>You deposited <yellow><blocks_deposit> <blue>claim blocks<newline><prefix> <blue>You now have <yellow><blocks_remaining> <blue>available claim blocks"
+#
+#
+## Player attempts to withdraw/transfer more claim blocks than they have
+#ERROR_NOT_ENOUGH_CLAIM_BLOCKS: "<prefix> <red>Error: You only have <yellow><blocks> <red>claim blocks"
+#
+## Player attempts to withdraw/transfer more claim blocks than is allowed
+##ERROR_MAX_CLAIM_BLOCKS: "<prefix> <red>Error: You can only withdraw a maximum of <yellow><max_blocks> <red>claim blocks"
+#
+## Player attempts to withdraw/transfer less claim blocks than is allowed
+##ERROR_MIN_CLAIM_BLOCKS: "<prefix> <red>Error: You can only withdraw a maximum of <yellow><max_blocks> <red>claim blocks"
+#
+## Player attempts to withdraw/transfer and doesn't have enough money to pay the transaction fee or tax
+#ERROR_INSUFFICIENT_FUNDS: "<prefix> <red>Error: You don't have enough money to do that"
