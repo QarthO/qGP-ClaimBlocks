@@ -9,7 +9,7 @@
 # Default Config
 schema-version: 1.0
 
-# Requires 'qgptrade.admin.updates' permission to be notified
+# Requires 'q.gpcb.admin.updates' permission to be notified
 # OPs can deny this permission to not be notified upon logging in
 # Only checks when the server boots or someone with the permission logs in
 # Note: A server restart is required to change this setting
@@ -22,17 +22,17 @@ check-updates: true
 # +------------------------------------------------------------+ #
 ##################################################################
 
-# requires permission: 'qgptrade.command.withdraw'
+# requires permission: 'q.gpcb.command.withdraw'
 withdraw:
   # The minimum amount of blocks a player can withdraw into a deposit slip
-  # Bypass with permission: 'qgptrade.command.withdraw.min.bypass'
-  # Override with permission:'qgptrade.withdraw.min.<amount>'
+  # Bypass with permission: 'q.gpcb.command.withdraw.min.bypass'
+  # Override with permission:'q.gpcb.withdraw.min.<amount>'
   # Default: 100 || Range: 0 - 2147483647 || Use '-1' to disable
   min-claim-blocks: 100
 
   # The maxmimum amount of blocks a player can withdraw into a deposit slip
-  # Bypass with permission: 'qgptrade.withdraw.max.bypass'
-  # Override with permission:'qgptrade.withdraw.max.<amount>'
+  # Bypass with permission: 'q.gpcb.withdraw.max.bypass'
+  # Override with permission:'q.gpcb.withdraw.max.<amount>'
   # Default: -1 || Range: 1 - 2147483647 || Use '-1' to disable
   max-claim-blocks: -1
 
@@ -62,17 +62,17 @@ withdraw:
 # +------------------------------------------------------------+ #
 ##################################################################
 
-# requires permission: 'qgptrade.command.transfer'
-send:
+# requires permission: 'q.gpcb.command.transfer'
+transfer:
   # The minimum amount of blocks a player can send
-  # Bypass with permission: 'qgptrade.transfer.min.bypass'
-  # Override with permission:'qgptrade.transfer.min.<amount>'
+  # Bypass with permission: 'q.gpcb.transfer.min.bypass'
+  # Override with permission:'q.gpcb.transfer.min.<amount>'
   # Default: 100 || Range: 0 - 2147483647
   min-claim-blocks: 100
 
   # The maxmimum amount of blocks a player can send
-  # Bypass with permission: 'qgptrade.transfer.max.bypass'
-  # Override with permission:'qgptrade.transfer.max.<amount>'
+  # Bypass with permission: 'q.gpcb.transfer.max.bypass'
+  # Override with permission:'q.gpcb.transfer.max.<amount>'
   # Default: -1 || Range: 1 - 2147483647 || Use '-1' to disable
   max-claim-blocks: -1
 
@@ -90,21 +90,21 @@ economy:
   enabled: true
   # Flat amount that gets charged to the player's account
   fee:
-    # Bypass with permission: 'qgptrade.withdraw.fee.bypass'
-    # Override with permission:'qgptrade.withdraw.fee.<amount>'
+    # Bypass with permission: 'q.gpcb.withdraw.fee.bypass'
+    # Override with permission:'q.gpcb.withdraw.fee.<amount>'
     # Default: 0 || Range: 0 - 2147483647 || Use '-1' to disable
     withdraw: -1
-    # Bypass with permission: 'qgptrade.transfer.fee.bypass'
-    # Override with permission:'qgptrade.transfer.fee.<amount>'
+    # Bypass with permission: 'q.gpcb.transfer.fee.bypass'
+    # Override with permission:'q.gpcb.transfer.fee.<amount>'
     # Default: 0 || Range: 0 - 2147483647 || Use '-1' to disable
     transfer: -1
   # Percentage (based on amount of claim blocks) amount that gets charged
   tax:
-    # Bypass with permission: 'qgptrade.withdraw.tax.bypass'
-    # Override with permission:'qgptrade.withdraw.tax.<amount>'
+    # Bypass with permission: 'q.gpcb.withdraw.tax.bypass'
+    # Override with permission:'q.gpcb.withdraw.tax.<amount>'
     # Default: 5 || Range: 0 - 100 || Use '-1' to disable
     withdraw: 5
-    # Bypass with permission: 'qgptrade.transfer.tax.bypass'
-    # Override with permission:'qgptrade.transfer.tax.<amount>'
+    # Bypass with permission: 'q.gpcb.transfer.tax.bypass'
+    # Override with permission:'q.gpcb.transfer.tax.<amount>'
     # Default: -1 || Range: 0 - 100 || Use '-1' to disable
     transfer: -1

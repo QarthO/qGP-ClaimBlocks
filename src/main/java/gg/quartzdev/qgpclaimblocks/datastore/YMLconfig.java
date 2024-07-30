@@ -1,9 +1,7 @@
 package gg.quartzdev.qgpclaimblocks.datastore;
 
-import gg.quartzdev.lib.qlibpaper.QLogger;
 import gg.quartzdev.lib.qlibpaper.storage.ConfigOption;
 import gg.quartzdev.lib.qlibpaper.storage.QConfiguration;
-import gg.quartzdev.qgpclaimblocks.ClaimBlocksAPI;
 import org.bukkit.Material;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -34,9 +32,9 @@ public class YMLconfig extends QConfiguration {
 
 //        Min max claim blocks
         setup(ConfigPath.MIN_WITHDRAW, 1, () -> getNumber(ConfigPath.MIN_WITHDRAW.get()).intValue());
-        setup(ConfigPath.MAX_WITHDRAW, Integer.MAX_VALUE, () -> getNumber(ConfigPath.MAX_WITHDRAW.get()).intValue());
+        setup(ConfigPath.MAX_WITHDRAW, Integer.MAX_VALUE-1, () -> getNumber(ConfigPath.MAX_WITHDRAW.get()).intValue());
         setup(ConfigPath.MIN_TRANSFER, 0, () -> getNumber(ConfigPath.MIN_TRANSFER.get()).intValue());
-        setup(ConfigPath.MAX_TRANSFER, Integer.MAX_VALUE, () -> getNumber(ConfigPath.MAX_TRANSFER.get()).intValue());
+        setup(ConfigPath.MAX_TRANSFER, Integer.MAX_VALUE-1, () -> getNumber(ConfigPath.MAX_TRANSFER.get()).intValue());
 
 //        Slip related
         setup(ConfigPath.SLIP_NAME, "<bold><yellow><blocks_withdraw> claim blocks", () -> getString(ConfigPath.SLIP_NAME.get()));

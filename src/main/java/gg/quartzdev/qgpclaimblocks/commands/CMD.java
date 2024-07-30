@@ -22,9 +22,10 @@ public class CMD extends QCommand {
         if(!(sender instanceof Player player)){
             return false;
         }
-        Sender.message(sender, "<prefix> You have <blue>" + GriefPrevention.instance.dataStore.getPlayerData(player.getUniqueId()).getRemainingClaimBlocks() + " <green>available claim blocks");
-        Sender.message(sender, "Min: " + config.get(ConfigPath.MIN_WITHDRAW,0));
-//        return false;
+        final String availableBlocks = String.valueOf(GriefPrevention.instance.dataStore.getPlayerData(player.getUniqueId()).getRemainingClaimBlocks());
+        Sender.message(sender,
+                "<prefix> <green>You have <blue>" + availableBlocks + " </blue>available claim blocks");
+        //        return false;
         return true;
     }
 

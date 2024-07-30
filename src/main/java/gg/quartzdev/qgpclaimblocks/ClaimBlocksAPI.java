@@ -2,7 +2,6 @@ package gg.quartzdev.qgpclaimblocks;
 
 import gg.quartzdev.lib.qlibpaper.QPerm;
 import gg.quartzdev.lib.qlibpaper.QPluginAPI;
-import gg.quartzdev.lib.qlibpaper.UpdateChecker;
 import gg.quartzdev.lib.qlibpaper.commands.QCommandMap;
 import gg.quartzdev.lib.qlibpaper.lang.GenericMessages;
 import gg.quartzdev.lib.qlibpaper.QLogger;
@@ -22,7 +21,7 @@ import java.util.List;
 public class ClaimBlocksAPI implements QPluginAPI {
 
     private final String CONSOLE_PREFIX = "<white>[<red>qGP<white>-<aqua>ClaimBlocks<white>]";
-    private final String CHAT_PREFIX = "<red>qGP<white>-<aqua>ClaimBlocks <bold><gray>>></bold>";
+    private final String CHAT_PREFIX = "<aqua>ClaimBlocks <bold><gray>>></bold>";
     private static ClaimBlocksAPI apiInstance;
     private static QGPClaimBlocks pluginInstance;
     private static Messages messages;
